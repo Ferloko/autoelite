@@ -1,11 +1,489 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Elite</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auto Elite — Autos de Excepción</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    
+
+<!-- ── NAV ─────────────────────────────────────── -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a class="n-logo" href="index.html">Auto Elite</a>
+    <ul class="n-links">
+
+      <li><a href="inventario.html">Vehículos</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Nuevos</p>
+            <p class="dd-title">Ver inventario</p>
+            <a href="#">Sedanes</a>
+            <a href="#">SUVs</a>
+            <a href="#">Pickups</a>
+            <a href="#">Eléctricos</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Usados</p>
+            <a href="#">Certificados</a>
+            <a href="#">Todos los usados</a>
+            <a href="#">Menos de $20,000</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Herramientas</p>
+            <a href="#">Comparar modelos</a>
+            <a href="#">Calculadora de pagos</a>
+            <a href="#">Valorar mi auto</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="financiamiento.html">Financiamiento</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Opciones</p>
+            <p class="dd-title">Financia tu auto</p>
+            <a href="#">Crédito directo</a>
+            <a href="#">Leasing</a>
+            <a href="#">Refinanciamiento</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Herramientas</p>
+            <a href="#">Calculadora de cuotas</a>
+            <a href="#">Solicitar crédito</a>
+            <a href="#">Requisitos</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="servicio.html">Servicio</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Taller</p>
+            <p class="dd-title">Centro de servicio</p>
+            <a href="#">Agendar cita</a>
+            <a href="#">Mantenimiento</a>
+            <a href="#">Garantías</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Más servicios</p>
+            <a href="#">Piezas originales</a>
+            <a href="#">Accesorios</a>
+            <a href="#">Seguros</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="nosotros.html">Nosotros</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">La empresa</p>
+            <p class="dd-title">Auto Elite</p>
+            <a href="#">Sobre nosotros</a>
+            <a href="#">Nuestro equipo</a>
+            <a href="#">Ubicación</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Contacto</p>
+            <a href="#">Agendar visita</a>
+            <a href="#">Llamar ahora</a>
+            <a href="#">WhatsApp</a>
+          </div>
+        </div></div>
+      </li>
+
+    </ul>
+    <div class="n-icons">
+      <a href="#" aria-label="Buscar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.3"/>
+          <line x1="10.5" y1="10.5" x2="14.5" y2="14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Contacto">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M1.5 4L8 9.5L14.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <p class="hero-kicker">Colección 2025</p>
+    <h1>Conduce<br>lo extraordinario.</h1>
+    <p class="hero-sub">Vehículos nuevos y certificados de las mejores marcas. Financiamiento a tu medida.</p>
+    <div class="hero-actions">
+      <a href="inventario.html" class="btn-gold">Ver inventario</a>
+      <a href="#" class="btn-ghost">Agendar prueba de manejo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── INVENTORY ─────────────────────────────────── -->
+<section class="inventory">
+  <div class="s-header reveal">
+    <p class="s-kicker">Inventario destacado</p>
+    <h2>Vehículos disponibles hoy.</h2>
+    <p>Selección actualizada semanalmente. Todos con revisión técnica y garantía.</p>
+  </div>
+  <div class="car-grid">
+
+    <div class="car-card reveal">
+      <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=700&q=75" alt="BMW Serie 5" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge">Nuevo</span>
+        <h3>BMW Serie 5</h3>
+        <p class="car-meta">2025 · Sedán · Automático</p>
+        <div class="car-specs">
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            0–100 en 5.8s
+          </div>
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            2.0L Turbo
+          </div>
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            5 plazas
+          </div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$58,900<span>desde $890/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card reveal">
+      <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=700&q=75" alt="Mercedes GLC" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge">Nuevo</span>
+        <h3>Mercedes-Benz GLC</h3>
+        <p class="car-meta">2025 · SUV · Automático</p>
+        <div class="car-specs">
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            0–100 en 6.1s
+          </div>
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            2.0L Hybrid
+          </div>
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            5 plazas
+          </div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$71,500<span>desde $1,080/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card reveal">
+      <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=700&q=75" alt="Porsche Macan" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge">Nuevo</span>
+        <h3>Porsche Macan</h3>
+        <p class="car-meta">2025 · SUV Eléctrico · Automático</p>
+        <div class="car-specs">
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            0–100 en 4.1s
+          </div>
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 2v2M7 10v2M2 7h2M10 7h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            Eléctrico · 613 km
+          </div>
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            5 plazas
+          </div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$86,200<span>desde $1,300/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card reveal">
+      <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=700&q=75" alt="Audi A6 Usado" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge used">Certificado</span>
+        <h3>Audi A6</h3>
+        <p class="car-meta">2022 · Sedán · 28,000 km</p>
+        <div class="car-specs">
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            0–100 en 5.1s
+          </div>
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            3.0L TFSI
+          </div>
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            5 plazas
+          </div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$44,900<span>desde $680/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── WHY US ─────────────────────────────────────── -->
+<section class="feature-dark">
+  <div class="s-header reveal">
+    <p class="s-kicker">Por qué elegirnos</p>
+    <h2>La experiencia que mereces.</h2>
+    <p>Más de 20 años conectando personas con el auto perfecto.</p>
+  </div>
+  <div class="feat-row">
+    <div class="feat reveal">
+      <div class="feat-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 6L6 13v10c0 9.5 6.9 18.4 16 20.6C31.1 41.4 38 32.5 38 23V13L22 6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M15 22l5 5 9-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h4>Garantía certificada</h4>
+      <p>Todos nuestros vehículos pasan una revisión de 150 puntos. Tu tranquilidad está garantizada.</p>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="10" width="32" height="24" rx="3" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M14 22h16M22 16v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h4>Financiamiento flexible</h4>
+      <p>Aprobación en 24 horas. Planes desde 12 hasta 84 meses adaptados a tu presupuesto.</p>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="16" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M22 14v8.5l5.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h4>Entrega en 48 horas</h4>
+      <p>Desde que firmas hasta que manejas tu auto, en menos de dos días hábiles.</p>
+    </div>
+    <div class="feat reveal">
+      <div class="feat-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 20c0-7.732 6.268-14 14-14s14 6.268 14 14c0 8-14 20-14 20S8 28 8 20z" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="22" cy="20" r="4" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+      </div>
+      <h4>Asesoría personalizada</h4>
+      <p>Un asesor dedicado te acompaña en todo el proceso, sin presiones y a tu ritmo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROMO BAND ─────────────────────────────────── -->
+<section class="promo">
+  <div class="promo-img"></div>
+  <div class="promo-content">
+    <p class="s-kicker reveal">Oferta especial</p>
+    <h2 class="reveal">Tu auto usado<br>vale más de lo que crees.</h2>
+    <p class="reveal">Trae tu vehículo, lo valuamos gratis y aplicamos el monto como enganche en tu próxima compra.</p>
+    <div class="reveal"><a href="#" class="btn-gold">Valuar mi auto</a></div>
+  </div>
+</section>
+
+<!-- ── SERVICES ───────────────────────────────────── -->
+<section class="services">
+  <div class="s-header reveal">
+    <p class="s-kicker">Servicios</p>
+    <h2>Todo lo que necesitas, en un solo lugar.</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="svc-icon">
+        <svg viewBox="0 0 36 36" fill="none">
+          <path d="M6 28l4-8 8 4 8-12 4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="6" cy="28" r="2" fill="currentColor"/>
+        </svg>
+      </div>
+      <h4>Mantenimiento</h4>
+      <p>Cambios de aceite, frenos, suspensión y más. Técnicos certificados y repuestos originales.</p>
+      <a href="#">Agendar cita</a>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-icon">
+        <svg viewBox="0 0 36 36" fill="none">
+          <rect x="4" y="8" width="28" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M12 8V6M24 8V6M4 15h28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h4>Prueba de manejo</h4>
+      <p>Agenda una prueba de manejo sin compromiso. También ofrecemos pruebas a domicilio.</p>
+      <a href="#">Reservar ahora</a>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-icon">
+        <svg viewBox="0 0 36 36" fill="none">
+          <path d="M18 4l3 9h9.5l-7.7 5.6 2.9 9L18 22l-7.7 5.6 2.9-9L5.5 13H15z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h4>Seguros</h4>
+      <p>Cotiza y contrata tu seguro automotriz en el mismo proceso de compra. Cobertura total.</p>
+      <a href="#">Ver planes</a>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-icon">
+        <svg viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M14 18h8M18 14v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h4>Accesorios</h4>
+      <p>Personaliza tu vehículo con accesorios originales. Instalación incluida sin costo adicional.</p>
+      <a href="#">Ver catálogo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────────────────── -->
+<section class="testimonials">
+  <div class="s-header reveal">
+    <p class="s-kicker">Clientes</p>
+    <h2>Lo que dicen quienes ya manejan con nosotros.</h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <blockquote>"El proceso fue increíblemente fácil. Me aprobaron el crédito en menos de un día y a los dos días ya tenía mi BMW. El equipo de Auto Elite es excepcional."</blockquote>
+      <div class="test-author">
+        <div class="t-av">RP</div>
+        <div><p class="t-name">Roberto Pérez</p><p class="t-role">Santo Domingo</p></div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <blockquote>"Llevo años comprando autos y nunca había tenido una experiencia tan transparente. Sin letras pequeñas, sin sorpresas. Volveré sin duda para mi próximo vehículo."</blockquote>
+      <div class="test-author">
+        <div class="t-av">AM</div>
+        <div><p class="t-name">Andrea Montero</p><p class="t-role">Santiago</p></div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <blockquote>"Traje mi SUV usada, la valuaron muy bien y la aplicaron como enganche. Salí con un Porsche Macan nuevo el mismo día. Servicio de primer nivel."</blockquote>
+      <div class="test-author">
+        <div class="t-av">CG</div>
+        <div><p class="t-name">Carlos García</p><p class="t-role">La Romana</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────── -->
+<section class="cta-band">
+  <h2 class="reveal">Tu próximo auto te espera.</h2>
+  <p class="reveal">Visítanos hoy o agenda una cita en línea. Sin presiones, a tu ritmo.</p>
+  <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="#" class="btn-gold">Ver todo el inventario</a>
+    <a href="#" class="btn-ghost">Agendar cita</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <p class="logo">Auto Elite</p>
+        <p>Concesionario premium con más de 20 años de experiencia. Tu satisfacción es nuestra garantía.</p>
+      </div>
+      <div class="ft-col">
+        <h6>Vehículos</h6>
+        <a href="#">Nuevos</a><a href="#">Usados certificados</a>
+        <a href="#">Eléctricos</a><a href="#">SUVs</a>
+      </div>
+      <div class="ft-col">
+        <h6>Financiamiento</h6>
+        <a href="#">Crédito directo</a><a href="#">Leasing</a>
+        <a href="#">Calculadora</a><a href="#">Solicitar crédito</a>
+      </div>
+      <div class="ft-col">
+        <h6>Servicio</h6>
+        <a href="#">Agendar cita</a><a href="#">Mantenimiento</a>
+        <a href="#">Piezas</a><a href="#">Garantías</a>
+      </div>
+      <div class="ft-col">
+        <h6>Contacto</h6>
+        <a href="#">+1 (809) 000-0000</a>
+        <a href="#">info@autoelite.com</a>
+        <a href="#">Av. Principal 100</a>
+        <a href="#">Lun–Sáb 8am–7pm</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 Auto Elite. Todos los derechos reservados.</p>
+      <div class="ft-bottom-links">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
 </body>
 </html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inventario — Auto Elite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── PAGE HERO ──────────────────────────────────── */
+    .page-hero {
+      position: relative; height: 50vh; min-height: 380px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .page-hero-img {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1800&q=80') center/cover no-repeat;
+    }
+    .page-hero-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(120deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.28) 100%);
+    }
+    .page-hero-content {
+      position: relative; z-index: 1;
+      max-width: 1120px; width: 100%; margin: 0 auto;
+      padding: 0 24px 52px;
+    }
+    .page-hero-content .s-kicker { margin-bottom: 10px; }
+    .page-hero-content h1 {
+      font-size: clamp(34px, 5vw, 60px);
+      font-weight: 700; letter-spacing: -.03em; line-height: 1.05;
+      color: #fff;
+      opacity: 0; animation: up .6s .2s forwards;
+    }
+    .page-hero-content p {
+      font-size: 16px; color: rgba(255,255,255,.6); margin-top: 12px;
+      max-width: 440px; line-height: 1.6;
+      opacity: 0; animation: up .6s .35s forwards;
+    }
+
+    /* ── FILTER BAR ─────────────────────────────────── */
+    .filter-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px; position: sticky; top: var(--nav-h); z-index: 200;
+    }
+    .filter-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    }
+    .filter-btn {
+      font-size: 12px; font-weight: 600; letter-spacing: .04em;
+      text-transform: uppercase; cursor: pointer;
+      padding: 7px 16px; border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--white); color: var(--mid);
+      transition: all .18s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--ink); color: var(--white); border-color: var(--ink);
+    }
+    .filter-count {
+      margin-left: auto;
+      font-size: 12px; color: var(--mid); white-space: nowrap;
+    }
+
+    /* ── INVENTORY PAGE GRID ────────────────────────── */
+    .inv-section { background: var(--light); padding: 64px 24px 88px; }
+    .inv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px; max-width: 1120px; margin: 0 auto;
+    }
+
+    /* ── HIGHLIGHTED CARD ───────────────────────────── */
+    .car-card.featured {
+      grid-column: span 2;
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .car-card.featured img { aspect-ratio: unset; height: 100%; }
+    @media (max-width: 700px) {
+      .car-card.featured { grid-column: span 1; display: block; }
+      .car-card.featured img { aspect-ratio: 16/10; height: auto; }
+    }
+
+    /* ── SORT SELECT ─────────────────────────────────── */
+    .sort-row {
+      max-width: 1120px; margin: 0 auto 24px;
+      display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+    }
+    .sort-row label { font-size: 12px; color: var(--mid); }
+    .sort-row select {
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px; font-weight: 600;
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 6px 10px; background: var(--white); color: var(--ink);
+      cursor: pointer;
+    }
+
+    /* ── PAGINATION ─────────────────────────────────── */
+    .pagination {
+      max-width: 1120px; margin: 48px auto 0;
+      display: flex; justify-content: center; gap: 6px;
+    }
+    .pg-btn {
+      width: 36px; height: 36px; border-radius: 4px;
+      border: 1px solid var(--border); background: var(--white);
+      font-size: 13px; font-weight: 600; color: var(--mid);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all .18s;
+    }
+    .pg-btn.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+    .pg-btn:hover:not(.active) { border-color: var(--ink); color: var(--ink); }
+
+    /* ── PROMO BAND ─────────────────────────────────── */
+    .promo { position: relative; height: 380px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+    .promo-img { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1800&q=80') center/cover no-repeat; }
+    .promo-img::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.52); }
+    .promo-content { position: relative; z-index: 1; padding: 0 24px; }
+    .promo-content .s-kicker { color: var(--accent); }
+    .promo-content h2 { font-size: clamp(26px, 4vw, 48px); font-weight: 700; letter-spacing: -.03em; color: #fff; max-width: 580px; margin: 0 auto 14px; }
+    .promo-content p { font-size: 15px; color: rgba(255,255,255,.6); max-width: 380px; margin: 0 auto 24px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────── -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a class="n-logo" href="#">Auto Elite</a>
+    <ul class="n-links">
+
+      <li><a href="inventario.html">Vehículos</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Nuevos</p>
+            <p class="dd-title">Ver inventario</p>
+            <a href="#">Sedanes</a>
+            <a href="#">SUVs</a>
+            <a href="#">Pickups</a>
+            <a href="#">Eléctricos</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Usados</p>
+            <a href="#">Certificados</a>
+            <a href="#">Todos los usados</a>
+            <a href="#">Menos de $20,000</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Herramientas</p>
+            <a href="#">Comparar modelos</a>
+            <a href="#">Calculadora de pagos</a>
+            <a href="#">Valorar mi auto</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="financiamiento.html">Financiamiento</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Opciones</p>
+            <p class="dd-title">Financia tu auto</p>
+            <a href="#">Crédito directo</a>
+            <a href="#">Leasing</a>
+            <a href="#">Refinanciamiento</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Herramientas</p>
+            <a href="#">Calculadora de cuotas</a>
+            <a href="#">Solicitar crédito</a>
+            <a href="#">Requisitos</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="servicio.html">Servicio</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Taller</p>
+            <p class="dd-title">Centro de servicio</p>
+            <a href="#">Agendar cita</a>
+            <a href="#">Mantenimiento</a>
+            <a href="#">Garantías</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Más servicios</p>
+            <a href="#">Piezas originales</a>
+            <a href="#">Accesorios</a>
+            <a href="#">Seguros</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="nosotros.html">Nosotros</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">La empresa</p>
+            <p class="dd-title">Auto Elite</p>
+            <a href="#">Sobre nosotros</a>
+            <a href="#">Nuestro equipo</a>
+            <a href="#">Ubicación</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Contacto</p>
+            <a href="#">Agendar visita</a>
+            <a href="#">Llamar ahora</a>
+            <a href="#">WhatsApp</a>
+          </div>
+        </div></div>
+      </li>
+
+    </ul>
+    <div class="n-icons">
+      <a href="#" aria-label="Buscar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.3"/>
+          <line x1="10.5" y1="10.5" x2="14.5" y2="14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Contacto">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M1.5 4L8 9.5L14.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── PAGE HERO ─────────────────────────────────── -->
+<section class="page-hero" style="margin-top: var(--nav-h);">
+  <div class="page-hero-img"></div>
+  <div class="page-hero-content">
+    <p class="s-kicker" style="opacity:0;animation:up .5s .05s forwards">Colección 2025</p>
+    <h1>Inventario<br>completo.</h1>
+    <p>Vehículos nuevos y certificados. Todos con revisión técnica y garantía incluida.</p>
+  </div>
+</section>
+
+<!-- ── FILTER BAR ─────────────────────────────────── -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterCars(this,'all')">Todos</button>
+    <button class="filter-btn" onclick="filterCars(this,'nuevo')">Nuevos</button>
+    <button class="filter-btn" onclick="filterCars(this,'usado')">Usados</button>
+    <button class="filter-btn" onclick="filterCars(this,'suv')">SUV</button>
+    <button class="filter-btn" onclick="filterCars(this,'sedan')">Sedán</button>
+    <button class="filter-btn" onclick="filterCars(this,'electrico')">Eléctrico</button>
+    <span class="filter-count" id="count">12 vehículos</span>
+  </div>
+</div>
+
+<!-- ── INVENTORY ─────────────────────────────────── -->
+<section class="inv-section">
+  <div class="sort-row">
+    <label for="sort">Ordenar por:</label>
+    <select id="sort">
+      <option>Más recientes</option>
+      <option>Menor precio</option>
+      <option>Mayor precio</option>
+      <option>Mejor valorados</option>
+    </select>
+  </div>
+  <div class="inv-grid" id="carGrid">
+
+    <!-- Featured -->
+    <div class="car-card featured reveal" data-type="nuevo sedan">
+      <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=900&q=75" alt="BMW Serie 5"/>
+      <div class="car-info">
+        <span class="car-badge">Nuevo · Destacado</span>
+        <h3>BMW Serie 5</h3>
+        <p class="car-meta">2025 · Sedán · Automático</p>
+        <div class="car-specs">
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            0–100 en 5.8s
+          </div>
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            2.0L Turbo
+          </div>
+          <div class="spec">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            5 plazas
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:18px;">El Serie 5 redefine el lujo ejecutivo. Interior premium, tecnología de punta y una conducción que responde a cada instinto.</p>
+        <div class="car-footer">
+          <div class="car-price">$58,900<span>desde $890/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="car-card reveal" data-type="nuevo suv">
+      <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=700&q=75" alt="Mercedes GLC" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge">Nuevo</span>
+        <h3>Mercedes-Benz GLC</h3>
+        <p class="car-meta">2025 · SUV · Automático</p>
+        <div class="car-specs">
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 6.1s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>2.0L Hybrid</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5 plazas</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$64,500<span>desde $975/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="car-card reveal" data-type="nuevo electrico suv">
+      <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=700&q=75" alt="Tesla Model Y" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge">Nuevo</span>
+        <h3>Tesla Model Y</h3>
+        <p class="car-meta">2025 · SUV · Eléctrico</p>
+        <div class="car-specs">
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 3.7s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Eléctrico</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>7 plazas</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$52,990<span>desde $800/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="car-card reveal" data-type="usado suv">
+      <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=700&q=75" alt="Porsche Macan" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge used">Certificado</span>
+        <h3>Porsche Macan S</h3>
+        <p class="car-meta">2023 · SUV · Automático</p>
+        <div class="car-specs">
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 4.6s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>3.0L V6</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5 plazas</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$71,200<span>desde $1,075/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="car-card reveal" data-type="usado sedan">
+      <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=700&q=75" alt="Audi A6" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge used">Certificado</span>
+        <h3>Audi A6 Quattro</h3>
+        <p class="car-meta">2022 · Sedán · Automático</p>
+        <div class="car-specs">
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 5.1s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>3.0L TFSI</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5 plazas</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$44,800<span>desde $677/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="car-card reveal" data-type="nuevo sedan">
+      <img src="https://images.unsplash.com/photo-1616422285623-13ff0162193c?w=700&q=75" alt="Lexus ES" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge">Nuevo</span>
+        <h3>Lexus ES 350</h3>
+        <p class="car-meta">2025 · Sedán · Automático</p>
+        <div class="car-specs">
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 7.1s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>3.5L V6</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5 plazas</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$47,300<span>desde $715/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="car-card reveal" data-type="nuevo suv">
+      <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=700&q=75" alt="Range Rover Sport" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge">Nuevo</span>
+        <h3>Range Rover Sport</h3>
+        <p class="car-meta">2025 · SUV · Automático</p>
+        <div class="car-specs">
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 6.5s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>3.0L Diesel</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5 plazas</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$89,700<span>desde $1,355/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="car-card reveal" data-type="usado electrico">
+      <img src="https://images.unsplash.com/photo-1561580125-028ee3bd62eb?w=700&q=75" alt="Tesla Model 3" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge used">Certificado</span>
+        <h3>Tesla Model 3</h3>
+        <p class="car-meta">2023 · Sedán · Eléctrico</p>
+        <div class="car-specs">
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 3.1s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Eléctrico</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5 plazas</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$38,400<span>desde $580/mes</span></div>
+          <a href="#" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button class="pg-btn active">1</button>
+    <button class="pg-btn">2</button>
+    <button class="pg-btn">3</button>
+    <button class="pg-btn">›</button>
+  </div>
+</section>
+
+<!-- ── PROMO BAND ─────────────────────────────────── -->
+<section class="promo">
+  <div class="promo-img"></div>
+  <div class="promo-content">
+    <p class="s-kicker reveal">Oferta especial</p>
+    <h2 class="reveal">Tu auto usado vale más de lo que crees.</h2>
+    <p class="reveal">Valuación gratuita. Aplicamos el monto como enganche en tu próxima compra.</p>
+    <div class="reveal"><a href="#" class="btn-gold">Valuar mi auto</a></div>
+  </div>
+</section>
+
+<!-- ── CTA BAND ────────────────────────────────────────── -->
+<section class="cta-band">
+  <h2 class="reveal">¿No encuentras lo que buscas?</h2>
+  <p class="reveal">Cuéntanos qué necesitas y nuestro equipo lo encontrará por ti.</p>
+  <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="#" class="btn-gold">Hablar con un asesor</a>
+    <a href="#" class="btn-ghost">Agendar visita</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <p class="logo">Auto Elite</p>
+        <p>Concesionario premium con más de 20 años de experiencia. Tu satisfacción es nuestra garantía.</p>
+      </div>
+      <div class="ft-col">
+        <h6>Vehículos</h6>
+        <a href="inventario.html">Nuevos</a><a href="inventario.html">Usados certificados</a>
+        <a href="#">Eléctricos</a><a href="#">SUVs</a>
+      </div>
+      <div class="ft-col">
+        <h6>Financiamiento</h6>
+        <a href="financiamiento.html">Crédito directo</a><a href="financiamiento.html">Leasing</a>
+        <a href="#">Calculadora</a><a href="#">Solicitar crédito</a>
+      </div>
+      <div class="ft-col">
+        <h6>Servicio</h6>
+        <a href="servicio.html">Agendar cita</a><a href="servicio.html">Mantenimiento</a>
+        <a href="#">Piezas</a><a href="#">Garantías</a>
+      </div>
+      <div class="ft-col">
+        <h6>Contacto</h6>
+        <a href="#">+1 (809) 000-0000</a>
+        <a href="#">info@autoelite.com</a>
+        <a href="#">Av. Principal 100</a>
+        <a href="#">Lun–Sáb 8am–7pm</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 Auto Elite. Todos los derechos reservados.</p>
+      <div class="ft-bottom-links">
+        <a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  // Filter logic
+  function filterCars(btn, type) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cards = document.querySelectorAll('#carGrid .car-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const types = card.dataset.type || '';
+      const show = type === 'all' || types.includes(type);
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    document.getElementById('count').textContent = visible + ' vehículo' + (visible !== 1 ? 's' : '');
+  }
+</script>
+</body>
+</html>

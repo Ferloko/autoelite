@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Financiamiento — Auto Elite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── PAGE HERO ──────────────────────────────────── */
+    .page-hero {
+      position: relative; height: 56vh; min-height: 400px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .page-hero-img {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1800&q=80') center/cover no-repeat;
+    }
+    .page-hero-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(120deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.22) 100%);
+    }
+    .page-hero-content {
+      position: relative; z-index: 1;
+      max-width: 1120px; width: 100%; margin: 0 auto;
+      padding: 0 24px 52px;
+    }
+    .page-hero-content h1 {
+      font-size: clamp(34px, 5vw, 64px);
+      font-weight: 700; letter-spacing: -.03em; line-height: 1.05;
+      color: #fff; max-width: 580px;
+      opacity: 0; animation: up .6s .2s forwards;
+    }
+    .page-hero-content p {
+      font-size: 16px; color: rgba(255,255,255,.58); margin-top: 14px;
+      max-width: 420px; line-height: 1.6;
+      opacity: 0; animation: up .6s .35s forwards;
+    }
+    .page-hero-actions {
+      margin-top: 28px;
+      display: flex; gap: 12px; flex-wrap: wrap;
+      opacity: 0; animation: up .6s .5s forwards;
+    }
+
+    /* ── STATS STRIP ────────────────────────────────── */
+    .stats-strip {
+      background: var(--ink); padding: 40px 24px;
+    }
+    .stats-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 24px; text-align: center;
+    }
+    @media (max-width: 680px) { .stats-inner { grid-template-columns: 1fr 1fr; } }
+    .stat-item {}
+    .stat-num {
+      font-size: clamp(28px, 4vw, 40px); font-weight: 700;
+      color: var(--accent); letter-spacing: -.03em;
+    }
+    .stat-label {
+      font-size: 12px; font-weight: 500; color: rgba(255,255,255,.45);
+      margin-top: 4px; letter-spacing: .04em; text-transform: uppercase;
+    }
+
+    /* ── PLANS ──────────────────────────────────────── */
+    .plans-section { background: var(--light); padding: 88px 24px; }
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px; max-width: 1120px; margin: 0 auto;
+    }
+    .plan-card {
+      background: var(--white); border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 36px 28px; transition: box-shadow .25s;
+    }
+    .plan-card:hover { box-shadow: 0 10px 40px rgba(0,0,0,.1); }
+    .plan-card.featured-plan {
+      background: var(--ink); border-color: var(--ink); color: var(--white);
+    }
+    .plan-icon {
+      width: 44px; height: 44px; color: var(--accent); margin-bottom: 20px;
+    }
+    .plan-card h3 {
+      font-size: 18px; font-weight: 700; letter-spacing: -.01em;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .plan-card.featured-plan h3 { color: var(--white); }
+    .plan-card p {
+      font-size: 13px; color: var(--mid); line-height: 1.65; margin-bottom: 20px;
+    }
+    .plan-card.featured-plan p { color: rgba(255,255,255,.5); }
+    .plan-list { list-style: none; margin-bottom: 28px; }
+    .plan-list li {
+      font-size: 13px; color: var(--mid); padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .plan-card.featured-plan .plan-list li {
+      color: rgba(255,255,255,.55);
+      border-bottom-color: rgba(255,255,255,.07);
+    }
+    .plan-list li::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+    }
+    .plan-cta {
+      display: inline-block;
+      font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+      padding: 11px 22px; border-radius: 4px; text-decoration: none;
+      background: var(--accent); color: var(--ink);
+      transition: opacity .18s;
+    }
+    .plan-cta:hover { opacity: .85; }
+    .plan-card.featured-plan .plan-cta { background: var(--white); }
+
+    /* ── CALCULATOR ─────────────────────────────────── */
+    .calc-section { background: var(--white); padding: 88px 24px; }
+    .calc-wrap {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    @media (max-width: 760px) { .calc-wrap { grid-template-columns: 1fr; gap: 40px; } }
+    .calc-info .s-kicker { margin-bottom: 10px; }
+    .calc-info h2 {
+      font-size: clamp(28px, 3.5vw, 42px); font-weight: 700;
+      letter-spacing: -.025em; color: var(--ink); margin-bottom: 16px;
+    }
+    .calc-info p { font-size: 15px; color: var(--mid); line-height: 1.65; max-width: 380px; }
+    .calc-features { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+    .calc-feat {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 13px; font-weight: 500; color: var(--ink);
+    }
+    .calc-feat-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+    }
+
+    .calc-widget {
+      background: var(--light); border-radius: 16px; padding: 36px 32px;
+    }
+    .calc-row { margin-bottom: 22px; }
+    .calc-row label {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: 10px;
+    }
+    .calc-row label span { font-size: 14px; font-weight: 700; color: var(--ink); }
+    input[type="range"] {
+      width: 100%; -webkit-appearance: none; appearance: none;
+      height: 3px; background: var(--border); border-radius: 2px; outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--ink); cursor: pointer;
+      border: 2.5px solid var(--white);
+      box-shadow: 0 0 0 1px var(--ink);
+    }
+    .calc-result {
+      background: var(--ink); border-radius: 10px; padding: 22px 24px;
+      margin-top: 28px;
+    }
+    .calc-result-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.38); margin-bottom: 6px;
+    }
+    .calc-result-amount {
+      font-size: 38px; font-weight: 700; letter-spacing: -.03em; color: var(--white);
+    }
+    .calc-result-amount span { font-size: 16px; font-weight: 400; color: rgba(255,255,255,.4); }
+    .calc-result-sub {
+      font-size: 12px; color: rgba(255,255,255,.38); margin-top: 8px;
+    }
+    .calc-apply {
+      display: block; text-align: center; margin-top: 14px;
+      font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+      padding: 12px; border-radius: 6px; text-decoration: none;
+      background: var(--accent); color: var(--ink); transition: opacity .18s;
+    }
+    .calc-apply:hover { opacity: .88; }
+
+    /* ── PROCESS STEPS ──────────────────────────────── */
+    .process-section { background: #0f0f0f; padding: 96px 24px; }
+    .process-section .s-header h2 { color: #f4f4f4; }
+    .process-section .s-header p { color: rgba(255,255,255,.4); }
+    .steps-row {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0; position: relative;
+    }
+    .steps-row::before {
+      content: ''; position: absolute; top: 20px; left: 10%; right: 10%; height: 1px;
+      background: rgba(255,255,255,.08);
+    }
+    @media (max-width: 600px) { .steps-row::before { display: none; } }
+    .step-item { text-align: center; padding: 0 16px; position: relative; }
+    .step-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #1a1a1a; border: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--accent);
+      margin: 0 auto 18px; position: relative; z-index: 1;
+    }
+    .step-item h4 { font-size: 14px; font-weight: 700; color: #f4f4f4; margin-bottom: 8px; }
+    .step-item p { font-size: 12px; color: rgba(255,255,255,.38); line-height: 1.65; }
+
+    /* ── FAQ ─────────────────────────────────────────── */
+    .faq-section { background: var(--white); padding: 88px 24px; }
+    .faq-wrap { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--border); padding: 20px 0;
+      cursor: pointer;
+    }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 15px; font-weight: 600; color: var(--ink);
+    }
+    .faq-icon { font-size: 18px; color: var(--mid); user-select: none; transition: transform .25s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      font-size: 14px; color: var(--mid); line-height: 1.7;
+      max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .25s;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-top: 12px; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────── -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a class="n-logo" href="index.html">Auto Elite</a>
+    <ul class="n-links">
+
+      <li><a href="inventario.html">Vehículos</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Nuevos</p>
+            <p class="dd-title">Ver inventario</p>
+            <a href="#">Sedanes</a>
+            <a href="#">SUVs</a>
+            <a href="#">Pickups</a>
+            <a href="#">Eléctricos</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Usados</p>
+            <a href="#">Certificados</a>
+            <a href="#">Todos los usados</a>
+            <a href="#">Menos de $20,000</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Herramientas</p>
+            <a href="#">Comparar modelos</a>
+            <a href="#">Calculadora de pagos</a>
+            <a href="#">Valorar mi auto</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="financiamiento.html">Financiamiento</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Opciones</p>
+            <p class="dd-title">Financia tu auto</p>
+            <a href="#">Crédito directo</a>
+            <a href="#">Leasing</a>
+            <a href="#">Refinanciamiento</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Herramientas</p>
+            <a href="#">Calculadora de cuotas</a>
+            <a href="#">Solicitar crédito</a>
+            <a href="#">Requisitos</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="servicio.html">Servicio</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Taller</p>
+            <p class="dd-title">Centro de servicio</p>
+            <a href="#">Agendar cita</a>
+            <a href="#">Mantenimiento</a>
+            <a href="#">Garantías</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Más servicios</p>
+            <a href="#">Piezas originales</a>
+            <a href="#">Accesorios</a>
+            <a href="#">Seguros</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="nosotros.html">Nosotros</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">La empresa</p>
+            <p class="dd-title">Auto Elite</p>
+            <a href="#">Sobre nosotros</a>
+            <a href="#">Nuestro equipo</a>
+            <a href="#">Ubicación</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Contacto</p>
+            <a href="#">Agendar visita</a>
+            <a href="#">Llamar ahora</a>
+            <a href="#">WhatsApp</a>
+          </div>
+        </div></div>
+      </li>
+
+    </ul>
+    <div class="n-icons">
+      <a href="#" aria-label="Buscar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.3"/>
+          <line x1="10.5" y1="10.5" x2="14.5" y2="14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Contacto">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M1.5 4L8 9.5L14.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── PAGE HERO ─────────────────────────────────── -->
+<section class="page-hero" style="margin-top: var(--nav-h);">
+  <div class="page-hero-img"></div>
+  <div class="page-hero-content">
+    <p class="s-kicker" style="opacity:0;animation:up .5s .05s forwards">Financiamiento flexible</p>
+    <h1>El plan que se adapta a ti, no al revés.</h1>
+    <p>Aprobación en 24 horas. Tasas competitivas. Sin complicaciones.</p>
+    <div class="page-hero-actions">
+      <a href="#calculadora" class="btn-gold">Calcular cuota</a>
+      <a href="#" class="btn-ghost">Solicitar crédito</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ─────────────────────────────────────── -->
+<section class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item reveal"><div class="stat-num">24h</div><div class="stat-label">Aprobación</div></div>
+    <div class="stat-item reveal"><div class="stat-num">4.9%</div><div class="stat-label">Tasa desde</div></div>
+    <div class="stat-item reveal"><div class="stat-num">84</div><div class="stat-label">Meses máx.</div></div>
+    <div class="stat-item reveal"><div class="stat-num">98%</div><div class="stat-label">Aprobados</div></div>
+  </div>
+</section>
+
+<!-- ── PLANS ─────────────────────────────────────── -->
+<section class="plans-section">
+  <div class="s-header reveal">
+    <p class="s-kicker">Planes disponibles</p>
+    <h2>Elige cómo quieres financiar tu auto.</h2>
+    <p>Tres opciones diseñadas para distintos objetivos y perfiles financieros.</p>
+  </div>
+  <div class="plans-grid">
+
+    <div class="plan-card reveal">
+      <div class="plan-icon">
+        <svg viewBox="0 0 44 44" fill="none">
+          <rect x="6" y="10" width="32" height="24" rx="3" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M14 22h16M22 16v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Crédito Directo</h3>
+      <p>Financia hasta el 90% del valor del vehículo con cuotas fijas y predecibles desde el primer día.</p>
+      <ul class="plan-list">
+        <li>Plazo de 12 a 84 meses</li>
+        <li>Tasa desde 4.9% anual</li>
+        <li>Aprobación en 24 horas</li>
+        <li>Sin penalidad por pago anticipado</li>
+      </ul>
+      <a href="#" class="plan-cta">Solicitar crédito</a>
+    </div>
+
+    <div class="plan-card featured-plan reveal">
+      <div class="plan-icon">
+        <svg viewBox="0 0 44 44" fill="none">
+          <path d="M8 20c0-7.732 6.268-14 14-14s14 6.268 14 14c0 8-14 20-14 20S8 28 8 20z" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="22" cy="20" r="4" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+      </div>
+      <h3>Leasing (Arrendamiento)</h3>
+      <p>Maneja el auto que quieres pagando solo lo que usas. Cuotas más bajas y flexibilidad total al vencimiento.</p>
+      <ul class="plan-list">
+        <li>Cuotas hasta 35% más bajas</li>
+        <li>Opción de compra al final</li>
+        <li>Mantenimiento incluido en planes premium</li>
+        <li>Renueva tu vehículo cada 3 años</li>
+      </ul>
+      <a href="#" class="plan-cta">Explorar leasing</a>
+    </div>
+
+    <div class="plan-card reveal">
+      <div class="plan-icon">
+        <svg viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="16" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M22 14v8.5l5.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Refinanciamiento</h3>
+      <p>¿Ya tienes un crédito? Mejora tu tasa, reduce tu cuota mensual o ajusta el plazo a tu situación actual.</p>
+      <ul class="plan-list">
+        <li>Análisis gratuito de tu crédito actual</li>
+        <li>Ahorra desde el primer mes</li>
+        <li>Proceso 100% digital</li>
+        <li>Sin costo de evaluación</li>
+      </ul>
+      <a href="#" class="plan-cta">Refinanciar ahora</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CALCULATOR ─────────────────────────────────── -->
+<section class="calc-section" id="calculadora">
+  <div class="calc-wrap">
+    <div class="calc-info reveal">
+      <p class="s-kicker">Calculadora</p>
+      <h2>Descubre tu cuota mensual en segundos.</h2>
+      <p>Ajusta el precio del vehículo, el enganche y el plazo para ver una estimación inmediata de tu pago mensual.</p>
+      <div class="calc-features">
+        <div class="calc-feat"><div class="calc-feat-dot"></div>Estimación instantánea y sin compromiso</div>
+        <div class="calc-feat"><div class="calc-feat-dot"></div>Incluye tasa de interés referencial</div>
+        <div class="calc-feat"><div class="calc-feat-dot"></div>Solicita tu crédito con un clic al finalizar</div>
+      </div>
+    </div>
+    <div class="calc-widget reveal">
+      <div class="calc-row">
+        <label>Precio del vehículo <span id="priceLabel">$50,000</span></label>
+        <input type="range" id="price" min="10000" max="150000" step="1000" value="50000" oninput="calcUpdate()"/>
+      </div>
+      <div class="calc-row">
+        <label>Enganche <span id="downLabel">$10,000 (20%)</span></label>
+        <input type="range" id="down" min="5" max="50" step="5" value="20" oninput="calcUpdate()"/>
+      </div>
+      <div class="calc-row">
+        <label>Plazo <span id="termLabel">48 meses</span></label>
+        <input type="range" id="term" min="12" max="84" step="12" value="48" oninput="calcUpdate()"/>
+      </div>
+      <div class="calc-result">
+        <div class="calc-result-label">Cuota mensual estimada</div>
+        <div class="calc-result-amount" id="monthly">$923<span>/mes</span></div>
+        <div class="calc-result-sub" id="totalSub">Total financiado: $40,000 · Tasa: 6.9% anual</div>
+      </div>
+      <a href="#" class="calc-apply">Solicitar este crédito →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ────────────────────────────────────── -->
+<section class="process-section">
+  <div class="s-header reveal">
+    <p class="s-kicker">¿Cómo funciona?</p>
+    <h2>Del sofá a las llaves en 4 pasos.</h2>
+    <p>Un proceso diseñado para ser rápido, claro y sin sorpresas.</p>
+  </div>
+  <div class="steps-row">
+    <div class="step-item reveal">
+      <div class="step-num">01</div>
+      <h4>Elige tu vehículo</h4>
+      <p>Explora nuestro inventario y encuentra el auto que se ajusta a ti.</p>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-num">02</div>
+      <h4>Solicita el crédito</h4>
+      <p>Llena el formulario en línea en menos de 5 minutos. Solo datos básicos.</p>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-num">03</div>
+      <h4>Aprobación en 24h</h4>
+      <p>Nuestro equipo evalúa tu caso y te confirma las condiciones sin costo.</p>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-num">04</div>
+      <h4>Firma y maneja</h4>
+      <p>Firma digitalmente y recoge tu auto. Así de simple.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ───────────────────────────────────────── -->
+<section class="faq-section">
+  <div class="s-header reveal">
+    <p class="s-kicker">Preguntas frecuentes</p>
+    <h2>Todo lo que necesitas saber.</h2>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Cuáles son los requisitos para aplicar? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Solo necesitas ser mayor de 18 años, cédula de identidad vigente, comprobante de ingresos de los últimos 3 meses y un documento de domicilio. No necesitas historial crediticio perfecto.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Cuánto tiempo tarda la aprobación? <span class="faq-icon">+</span></div>
+      <div class="faq-a">La mayoría de las solicitudes se aprueban en menos de 24 horas hábiles. En muchos casos, recibirás una respuesta preliminar el mismo día.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Puedo financiar un vehículo usado? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Sí. Ofrecemos financiamiento tanto para vehículos nuevos como para nuestra línea de usados certificados, con condiciones similares y el mismo proceso de aprobación.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q">¿Hay penalidad por pagar antes de tiempo? <span class="faq-icon">+</span></div>
+      <div class="faq-a">No. En Auto Elite puedes realizar pagos adicionales o cancelar tu crédito antes del vencimiento sin ningún cargo adicional.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q">¿El leasing es mejor que el crédito directo? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Depende de tu objetivo. Si quieres ser dueño del vehículo, el crédito directo es ideal. Si prefieres cuotas más bajas y renovar tu auto cada pocos años, el leasing es una excelente opción.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ─────────────────────────────────────────── -->
+<section class="cta-band">
+  <h2 class="reveal">¿Listo para arrancar?</h2>
+  <p class="reveal">Habla con un asesor financiero hoy. Sin presiones, a tu ritmo.</p>
+  <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="#" class="btn-gold">Solicitar crédito</a>
+    <a href="inventario.html" class="btn-ghost">Ver inventario</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <p class="logo">Auto Elite</p>
+        <p>Concesionario premium con más de 20 años de experiencia. Tu satisfacción es nuestra garantía.</p>
+      </div>
+      <div class="ft-col">
+        <h6>Vehículos</h6>
+        <a href="inventario.html">Nuevos</a><a href="inventario.html">Usados certificados</a>
+        <a href="#">Eléctricos</a><a href="#">SUVs</a>
+      </div>
+      <div class="ft-col">
+        <h6>Financiamiento</h6>
+        <a href="#">Crédito directo</a><a href="#">Leasing</a>
+        <a href="#">Calculadora</a><a href="#">Solicitar crédito</a>
+      </div>
+      <div class="ft-col">
+        <h6>Servicio</h6>
+        <a href="servicio.html">Agendar cita</a><a href="servicio.html">Mantenimiento</a>
+        <a href="#">Piezas</a><a href="#">Garantías</a>
+      </div>
+      <div class="ft-col">
+        <h6>Contacto</h6>
+        <a href="#">+1 (809) 000-0000</a>
+        <a href="#">info@autoelite.com</a>
+        <a href="#">Av. Principal 100</a>
+        <a href="#">Lun–Sáb 8am–7pm</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 Auto Elite. Todos los derechos reservados.</p>
+      <div class="ft-bottom-links">
+        <a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  function calcUpdate() {
+    const price = parseInt(document.getElementById('price').value);
+    const downPct = parseInt(document.getElementById('down').value);
+    const term = parseInt(document.getElementById('term').value);
+    const rate = 0.069;
+    const down = Math.round(price * downPct / 100);
+    const principal = price - down;
+    const monthly_rate = rate / 12;
+    const payment = principal * (monthly_rate * Math.pow(1 + monthly_rate, term)) / (Math.pow(1 + monthly_rate, term) - 1);
+
+    document.getElementById('priceLabel').textContent = '$' + price.toLocaleString();
+    document.getElementById('downLabel').textContent = '$' + down.toLocaleString() + ' (' + downPct + '%)';
+    document.getElementById('termLabel').textContent = term + ' meses';
+    document.getElementById('monthly').innerHTML = '$' + Math.round(payment).toLocaleString() + '<span>/mes</span>';
+    document.getElementById('totalSub').textContent = 'Total financiado: $' + principal.toLocaleString() + ' · Tasa: 6.9% anual';
+  }
+  calcUpdate();
+
+  function toggleFaq(el) {
+    el.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

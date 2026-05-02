@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosotros — Auto Elite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+
+    /* ── PAGE HERO ──────────────────────────────────── */
+    .page-hero {
+      position: relative; height: 60vh; min-height: 440px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+    .page-hero-img {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1800&q=80') center 40%/cover no-repeat;
+    }
+    .page-hero-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.55) 0%, rgba(0,0,0,.38) 60%, rgba(0,0,0,.72) 100%);
+    }
+    .page-hero-content {
+      position: relative; z-index: 1; padding: 0 24px;
+    }
+    .page-hero-content .s-kicker {
+      opacity: 0; animation: up .5s .05s forwards;
+    }
+    .page-hero-content h1 {
+      font-size: clamp(38px, 6vw, 72px);
+      font-weight: 700; letter-spacing: -.035em; line-height: 1.0;
+      color: #fff; max-width: 700px; margin: 0 auto;
+      opacity: 0; animation: up .6s .2s forwards;
+    }
+    .page-hero-content .hero-lema {
+      font-size: clamp(14px, 2vw, 18px);
+      font-weight: 300; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--accent); margin-top: 20px;
+      opacity: 0; animation: up .6s .38s forwards;
+    }
+
+    /* ── LEMA BAND ──────────────────────────────────── */
+    .lema-band {
+      background: var(--ink); padding: 56px 24px; text-align: center;
+    }
+    .lema-quotes {
+      font-size: 13px; color: var(--accent); letter-spacing: .15em;
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+    .lema-text {
+      font-size: clamp(22px, 3.5vw, 38px); font-weight: 700;
+      letter-spacing: -.025em; color: #fff;
+      max-width: 760px; margin: 0 auto; line-height: 1.25;
+    }
+    .lema-text em {
+      font-style: normal; color: var(--accent);
+    }
+    .lema-author {
+      font-size: 12px; color: rgba(255,255,255,.28);
+      letter-spacing: .08em; margin-top: 18px;
+    }
+
+    /* ── HISTORIA ───────────────────────────────────── */
+    .historia-section { background: var(--white); padding: 96px 24px; }
+    .historia-wrap {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    @media (max-width: 760px) { .historia-wrap { grid-template-columns: 1fr; gap: 40px; } }
+
+    .historia-img-col { position: relative; }
+    .historia-img-main {
+      width: 100%; aspect-ratio: 4/5; object-fit: cover;
+      border-radius: 12px; display: block;
+    }
+    .historia-img-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--ink); color: var(--white);
+      border-radius: 10px; padding: 18px 22px;
+      text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,.18);
+    }
+    @media (max-width: 760px) {
+      .historia-img-badge { right: 12px; bottom: 12px; }
+    }
+    .historia-img-badge .badge-num {
+      font-size: 34px; font-weight: 700; color: var(--accent); letter-spacing: -.04em;
+      line-height: 1;
+    }
+    .historia-img-badge .badge-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(255,255,255,.45);
+      margin-top: 4px;
+    }
+
+    .historia-text-col {}
+    .historia-text-col .s-kicker { margin-bottom: 10px; }
+    .historia-text-col h2 {
+      font-size: clamp(26px, 3.5vw, 40px); font-weight: 700;
+      letter-spacing: -.025em; color: var(--ink); margin-bottom: 20px;
+    }
+    .historia-text-col p {
+      font-size: 15px; color: var(--mid); line-height: 1.75; margin-bottom: 14px;
+    }
+
+    /* Timeline */
+    .timeline { margin-top: 36px; display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: grid; grid-template-columns: 52px 1fr;
+      gap: 0; position: relative;
+    }
+    .tl-item:not(:last-child) .tl-line::after {
+      content: ''; position: absolute; left: 18px; top: 32px; bottom: -10px;
+      width: 1px; background: var(--border);
+    }
+    .tl-line {
+      position: relative; display: flex; align-items: flex-start;
+      padding-top: 4px;
+    }
+    .tl-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); margin-top: 5px;
+      flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .tl-body { padding: 0 0 28px 14px; }
+    .tl-year {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 3px;
+    }
+    .tl-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+    /* ── MISION VISION ──────────────────────────────── */
+    .mv-section { background: var(--light); padding: 88px 24px; }
+    .mv-grid {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    @media (max-width: 640px) { .mv-grid { grid-template-columns: 1fr; } }
+    .mv-card {
+      border-radius: 12px; padding: 44px 36px; position: relative; overflow: hidden;
+    }
+    .mv-card.mision { background: var(--ink); }
+    .mv-card.vision  { background: var(--white); border: 1px solid var(--border); }
+    .mv-card-num {
+      position: absolute; top: -12px; right: 20px;
+      font-size: 96px; font-weight: 700; letter-spacing: -.05em;
+      color: rgba(255,255,255,.04); line-height: 1; user-select: none;
+    }
+    .mv-card.vision .mv-card-num { color: rgba(0,0,0,.04); }
+    .mv-icon { width: 38px; height: 38px; color: var(--accent); margin-bottom: 20px; }
+    .mv-card h3 {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .mv-card p {
+      font-size: 16px; font-weight: 500; line-height: 1.65; letter-spacing: -.01em;
+      color: #fff;
+    }
+    .mv-card.vision p { color: var(--ink); }
+
+    /* ── VALORES ────────────────────────────────────── */
+    .valores-section { background: var(--white); padding: 88px 24px; }
+    .valores-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px; max-width: 1120px; margin: 0 auto;
+    }
+    .valor-card {
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 32px 26px; transition: box-shadow .25s, border-color .25s;
+    }
+    .valor-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,.08);
+      border-color: var(--accent);
+    }
+    .valor-num {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+    }
+    .valor-card h4 {
+      font-size: 17px; font-weight: 700; color: var(--ink);
+      letter-spacing: -.015em; margin-bottom: 10px;
+    }
+    .valor-card p { font-size: 13px; color: var(--mid); line-height: 1.7; }
+
+    /* ── DIRECTIVA ──────────────────────────────────── */
+    .directiva-section { background: #0f0f0f; padding: 96px 24px; }
+    .directiva-section .s-header h2 { color: #f4f4f4; }
+    .directiva-section .s-header p  { color: rgba(255,255,255,.4); }
+
+    /* President — full width featured */
+    .directiva-president {
+      max-width: 1120px; margin: 0 auto 48px;
+      display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: center;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px; padding: 40px; overflow: hidden;
+    }
+    @media (max-width: 640px) { .directiva-president { grid-template-columns: 1fr; gap: 24px; padding: 28px; } }
+    .dir-president-photo {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      border-radius: 10px; display: block;
+      filter: grayscale(20%);
+    }
+    .dir-president-info {}
+    .dir-president-title {
+      font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .dir-president-name {
+      font-size: clamp(22px, 3vw, 34px); font-weight: 700;
+      letter-spacing: -.03em; color: #fff; margin-bottom: 6px;
+    }
+    .dir-president-role {
+      font-size: 13px; color: rgba(255,255,255,.35); margin-bottom: 20px;
+    }
+    .dir-president-bio {
+      font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.75;
+      max-width: 520px;
+    }
+    .dir-president-quote {
+      margin-top: 22px; padding-left: 16px;
+      border-left: 2px solid var(--accent);
+      font-size: 15px; font-style: italic; font-weight: 500;
+      color: rgba(255,255,255,.65); line-height: 1.6;
+    }
+
+    /* Rest of board */
+    .directiva-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px; max-width: 1120px; margin: 0 auto;
+    }
+    .dir-card {
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px; padding: 28px 24px; transition: border-color .25s;
+    }
+    .dir-card:hover { border-color: rgba(200,169,110,.35); }
+    .dir-photo-wrap {
+      width: 64px; height: 64px; border-radius: 50%; overflow: hidden;
+      margin-bottom: 16px; background: #1a1a1a;
+    }
+    .dir-photo-wrap img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%); }
+    .dir-photo-initials {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; color: var(--accent);
+    }
+    .dir-title {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 4px;
+    }
+    .dir-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+    .dir-role { font-size: 12px; color: rgba(255,255,255,.35); margin-bottom: 12px; }
+    .dir-bio { font-size: 12px; color: rgba(255,255,255,.38); line-height: 1.65; }
+
+    /* ── STATS STRIP ────────────────────────────────── */
+    .stats-strip { background: var(--ink); padding: 52px 24px; }
+    .stats-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center;
+    }
+    @media (max-width: 680px) { .stats-inner { grid-template-columns: 1fr 1fr; } }
+    .stat-num {
+      font-size: clamp(28px, 4vw, 44px); font-weight: 700;
+      color: var(--accent); letter-spacing: -.04em;
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 600; color: rgba(255,255,255,.38);
+      margin-top: 4px; letter-spacing: .06em; text-transform: uppercase;
+    }
+
+    /* ── UBICACION ──────────────────────────────────── */
+    .ubicacion-section { background: var(--light); padding: 88px 24px; }
+    .ubicacion-wrap {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;
+    }
+    @media (max-width: 760px) { .ubicacion-wrap { grid-template-columns: 1fr; gap: 36px; } }
+    .ubicacion-info .s-kicker { margin-bottom: 10px; }
+    .ubicacion-info h2 {
+      font-size: clamp(24px, 3vw, 36px); font-weight: 700;
+      letter-spacing: -.025em; color: var(--ink); margin-bottom: 16px;
+    }
+    .contact-rows { display: flex; flex-direction: column; gap: 14px; }
+    .contact-row {
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .contact-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+    }
+    .contact-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mid); }
+    .contact-value { font-size: 14px; font-weight: 600; color: var(--ink); margin-top: 2px; }
+    .map-placeholder {
+      width: 100%; aspect-ratio: 4/3; border-radius: 12px; overflow: hidden;
+      background: #e2e2e6; position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .map-placeholder svg { opacity: .18; }
+    .map-pin {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -60%);
+    }
+    .map-pin-dot {
+      width: 16px; height: 16px; background: var(--accent);
+      border-radius: 50%; border: 3px solid var(--white);
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+      margin: 0 auto;
+    }
+    .map-pin-label {
+      background: var(--ink); color: var(--white);
+      font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 4px;
+      white-space: nowrap; margin-top: 6px;
+    }
+    .map-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .map-road-h {
+      position: absolute; left: 0; right: 0; top: 52%;
+      height: 10px; background: rgba(255,255,255,.7); border-radius: 2px;
+    }
+    .map-road-v {
+      position: absolute; top: 0; bottom: 0; left: 47%;
+      width: 10px; background: rgba(255,255,255,.7); border-radius: 2px;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────── -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a class="n-logo" href="index.html">Auto Elite</a>
+    <ul class="n-links">
+
+      <li><a href="#">Vehículos</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Nuevos</p>
+            <p class="dd-title">Ver inventario</p>
+            <a href="#">Sedanes</a>
+            <a href="#">SUVs</a>
+            <a href="#">Pickups</a>
+            <a href="#">Eléctricos</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Usados</p>
+            <a href="#">Certificados</a>
+            <a href="#">Todos los usados</a>
+            <a href="#">Menos de $20,000</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Herramientas</p>
+            <a href="#">Comparar modelos</a>
+            <a href="#">Calculadora de pagos</a>
+            <a href="#">Valorar mi auto</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="financiamiento.html">Financiamiento</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Opciones</p>
+            <p class="dd-title">Financia tu auto</p>
+            <a href="#">Crédito directo</a>
+            <a href="#">Leasing</a>
+            <a href="#">Refinanciamiento</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Herramientas</p>
+            <a href="#">Calculadora de cuotas</a>
+            <a href="#">Solicitar crédito</a>
+            <a href="#">Requisitos</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="servicio.html">Servicio</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">Taller</p>
+            <p class="dd-title">Centro de servicio</p>
+            <a href="#">Agendar cita</a>
+            <a href="#">Mantenimiento</a>
+            <a href="#">Garantías</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Más servicios</p>
+            <a href="#">Piezas originales</a>
+            <a href="#">Accesorios</a>
+            <a href="#">Seguros</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li><a href="nosotros.html">Nosotros</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col">
+            <p class="dd-label">La empresa</p>
+            <p class="dd-title">Auto Elite</p>
+            <a href="#">Sobre nosotros</a>
+            <a href="#">Nuestro equipo</a>
+            <a href="#">Ubicación</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Contacto</p>
+            <a href="#">Agendar visita</a>
+            <a href="#">Llamar ahora</a>
+            <a href="#">WhatsApp</a>
+          </div>
+        </div></div>
+      </li>
+
+    </ul>
+    <div class="n-icons">
+      <a href="#" aria-label="Buscar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.3"/>
+          <line x1="10.5" y1="10.5" x2="14.5" y2="14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Contacto">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M1.5 4L8 9.5L14.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────── -->
+<section class="page-hero" style="margin-top: var(--nav-h);">
+  <div class="page-hero-img"></div>
+  <div class="page-hero-content">
+    <p class="s-kicker">Desde 2004</p>
+    <h1>Más de 20 años<br>de excelencia.</h1>
+    <p class="hero-lema">Pasión por el automóvil · Compromiso con el cliente</p>
+  </div>
+</section>
+
+<!-- ── LEMA ───────────────────────────────────────── -->
+<section class="lema-band">
+  <div class="lema-quotes reveal">— Nuestro lema —</div>
+  <p class="lema-text reveal">
+    "Conducir lo extraordinario no es un privilegio,<br>
+    es <em>la decisión correcta.</em>"
+  </p>
+  <p class="lema-author reveal">Auto Elite · Est. 2004, Santo Domingo, República Dominicana</p>
+</section>
+
+<!-- ── HISTORIA ──────────────────────────────────── -->
+<section class="historia-section">
+  <div class="historia-wrap">
+
+    <div class="historia-img-col reveal">
+      <img class="historia-img-main"
+        src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=80"
+        alt="Edificio Auto Elite"/>
+      <div class="historia-img-badge">
+        <div class="badge-num">+20</div>
+        <div class="badge-label">Años en el mercado</div>
+      </div>
+    </div>
+
+    <div class="historia-text-col reveal">
+      <p class="s-kicker">Nuestra historia</p>
+      <h2>Nacimos de una pasión. Crecimos por confianza.</h2>
+      <p>Auto Elite nació en 2004 con una sola misión: ofrecer a los dominicanos acceso a vehículos premium con un nivel de servicio que estuviera a la altura del producto. Lo que comenzó como un pequeño salón de tres vehículos en el corazón de Santo Domingo, hoy es uno de los concesionarios más reconocidos del país.</p>
+      <p>Durante dos décadas hemos construido relaciones que van más allá de la venta. Nuestros clientes regresan porque confían en nosotros, y esa confianza es el activo más valioso que poseemos.</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">2004</div>
+            <div class="tl-desc">Fundación de Auto Elite con 3 vehículos en exhibición y 5 colaboradores.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">2009</div>
+            <div class="tl-desc">Inauguración de nuestro centro de servicio técnico certificado y expansión a Santiago.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">2016</div>
+            <div class="tl-desc">Lanzamiento del programa de financiamiento propio con aprobación en 24 horas.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">2022</div>
+            <div class="tl-desc">Incorporación de la línea de vehículos eléctricos y apertura de sucursal en La Romana.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">Hoy</div>
+            <div class="tl-desc">Más de 60 colaboradores, 3 sucursales y más de 4,000 clientes satisfechos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── STATS ──────────────────────────────────────── -->
+<section class="stats-strip">
+  <div class="stats-inner">
+    <div class="reveal"><div class="stat-num">4,200+</div><div class="stat-label">Clientes satisfechos</div></div>
+    <div class="reveal"><div class="stat-num">3</div><div class="stat-label">Sucursales</div></div>
+    <div class="reveal"><div class="stat-num">60+</div><div class="stat-label">Colaboradores</div></div>
+    <div class="reveal"><div class="stat-num">20 años</div><div class="stat-label">De trayectoria</div></div>
+  </div>
+</section>
+
+<!-- ── MISIÓN & VISIÓN ────────────────────────────── -->
+<section class="mv-section">
+  <div class="s-header reveal">
+    <p class="s-kicker">Identidad corporativa</p>
+    <h2>Lo que nos mueve y hacia dónde vamos.</h2>
+  </div>
+  <div class="mv-grid">
+    <div class="mv-card mision reveal">
+      <div class="mv-card-num">M</div>
+      <div class="mv-icon">
+        <svg viewBox="0 0 38 38" fill="none">
+          <circle cx="19" cy="19" r="15" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M19 10v9.5l6 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Misión</h3>
+      <p>Conectar a las personas con vehículos que transformen su experiencia de vida, ofreciendo un proceso de compra transparente, un financiamiento accesible y un servicio técnico de excelencia que genere confianza duradera.</p>
+    </div>
+    <div class="mv-card vision reveal">
+      <div class="mv-card-num">V</div>
+      <div class="mv-icon">
+        <svg viewBox="0 0 38 38" fill="none">
+          <path d="M4 19c4-8 8-12 15-12s11 4 15 12c-4 8-8 12-15 12S8 27 4 19z" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="19" cy="19" r="5" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+      </div>
+      <h3>Visión</h3>
+      <p>Ser el concesionario de referencia en el Caribe para vehículos premium, reconocido por la integridad de sus procesos, la excelencia de su equipo humano y el impacto positivo que genera en la comunidad.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── VALORES ────────────────────────────────────── -->
+<section class="valores-section">
+  <div class="s-header reveal">
+    <p class="s-kicker">Nuestros valores</p>
+    <h2>Los principios que guían cada decisión.</h2>
+    <p>Más que palabras en una pared, son compromisos que nuestro equipo vive a diario.</p>
+  </div>
+  <div class="valores-grid">
+
+    <div class="valor-card reveal">
+      <div class="valor-num">01</div>
+      <h4>Integridad</h4>
+      <p>Actuamos con transparencia en cada transacción. Sin letras pequeñas, sin promesas vacías. Lo que decimos, lo cumplimos.</p>
+    </div>
+
+    <div class="valor-card reveal">
+      <div class="valor-num">02</div>
+      <h4>Excelencia</h4>
+      <p>Nos negamos a conformarnos con lo mediocre. Desde la limpieza del salón hasta la entrega del vehículo, cada detalle importa.</p>
+    </div>
+
+    <div class="valor-card reveal">
+      <div class="valor-num">03</div>
+      <h4>Personas primero</h4>
+      <p>Vendemos autos, pero nuestro negocio real son las relaciones. Cada cliente merece atención personalizada y respeto absoluto.</p>
+    </div>
+
+    <div class="valor-card reveal">
+      <div class="valor-num">04</div>
+      <h4>Innovación</h4>
+      <p>Adoptamos tecnología y nuevas ideas sin miedo. Fuimos de los primeros en el país en ofrecer vehículos eléctricos premium.</p>
+    </div>
+
+    <div class="valor-card reveal">
+      <div class="valor-num">05</div>
+      <h4>Responsabilidad</h4>
+      <p>Somos conscientes de nuestro impacto en la comunidad y el medioambiente. Promovemos la movilidad sostenible activamente.</p>
+    </div>
+
+    <div class="valor-card reveal">
+      <div class="valor-num">06</div>
+      <h4>Pasión</h4>
+      <p>Amamos lo que hacemos. Esa pasión se nota en cada conversación, en cada recomendación y en cada vehículo que entregamos.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── DIRECTIVA ──────────────────────────────────── -->
+<section class="directiva-section">
+  <div class="s-header reveal">
+    <p class="s-kicker">Directiva</p>
+    <h2>El equipo que lidera Auto Elite.</h2>
+    <p>Profesionales comprometidos con la visión que fundó esta empresa hace más de veinte años.</p>
+  </div>
+
+  <!-- President -->
+  <div class="directiva-president reveal">
+    <img class="dir-president-photo"
+      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=75"
+      alt="Roberto Álvarez"/>
+    <div class="dir-president-info">
+      <div class="dir-president-title">Presidente &amp; Fundador</div>
+      <div class="dir-president-name">Roberto Álvarez</div>
+      <div class="dir-president-role">Presidente Ejecutivo · Auto Elite S.A.S.</div>
+      <p class="dir-president-bio">
+        Empresario dominicano con más de 25 años de experiencia en el sector automotriz. Fundó Auto Elite en 2004 con la convicción de que el mercado local merecía un concesionario a la altura de los mejores del mundo. Ha liderado la expansión de la empresa a tres sucursales y su entrada al segmento de vehículos eléctricos. Es miembro de la Cámara de Comercio de Santo Domingo y del Clúster Automotriz del Caribe.
+      </p>
+      <blockquote class="dir-president-quote">
+        "Construimos Auto Elite sobre una premisa simple: tratar a cada cliente como si fuera el único. Eso nunca cambiará."
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Board -->
+  <div class="directiva-grid">
+
+    <div class="dir-card reveal">
+      <div class="dir-photo-wrap">
+        <img src="https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=200&q=75" alt="María Fernández"/>
+      </div>
+      <div class="dir-title">Vicepresidenta</div>
+      <div class="dir-name">María Fernández</div>
+      <div class="dir-role">Vicepresidenta de Operaciones</div>
+      <p class="dir-bio">Ingeniera industrial con MBA en INCAE. Lidera la eficiencia operativa de las tres sucursales y el centro de servicio técnico desde 2010.</p>
+    </div>
+
+    <div class="dir-card reveal">
+      <div class="dir-photo-wrap">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=75" alt="Carlos Mena"/>
+      </div>
+      <div class="dir-title">Director Comercial</div>
+      <div class="dir-name">Carlos Mena</div>
+      <div class="dir-role">Director de Ventas &amp; Expansión</div>
+      <p class="dir-bio">15 años en ventas de lujo. Responsable del crecimiento de cartera de clientes VIP y la apertura de la sucursal de La Romana en 2022.</p>
+    </div>
+
+    <div class="dir-card reveal">
+      <div class="dir-photo-wrap">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=75" alt="Andrea Soto"/>
+      </div>
+      <div class="dir-title">Directora Financiera</div>
+      <div class="dir-name">Andrea Soto</div>
+      <div class="dir-role">CFO · Finanzas &amp; Crédito</div>
+      <p class="dir-bio">CPA con especialización en banca y crédito automotriz. Diseñó el programa de financiamiento propio que hoy aprueba créditos en 24 horas.</p>
+    </div>
+
+    <div class="dir-card reveal">
+      <div class="dir-photo-wrap">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=75" alt="Luis Peña"/>
+      </div>
+      <div class="dir-title">Director Técnico</div>
+      <div class="dir-name">Luis Peña</div>
+      <div class="dir-role">Director de Servicio &amp; Posventa</div>
+      <p class="dir-bio">Certificado por BMW AG y Mercedes-Benz. Supervisa a los 22 técnicos del taller y garantiza los estándares de calidad en cada trabajo.</p>
+    </div>
+
+    <div class="dir-card reveal">
+      <div class="dir-photo-wrap">
+        <img src="https://images.unsplash.com/photo-1598550874175-4d0ef436c909?w=200&q=75" alt="Sofía Ramírez"/>
+      </div>
+      <div class="dir-title">Directora de Marketing</div>
+      <div class="dir-name">Sofía Ramírez</div>
+      <div class="dir-role">CMO · Marca &amp; Experiencia</div>
+      <p class="dir-bio">Experta en branding de lujo formada en Miami Ad School. Redefinió la identidad visual y digital de Auto Elite a partir de 2019.</p>
+    </div>
+
+    <div class="dir-card reveal">
+      <div class="dir-photo-wrap">
+        <div class="dir-photo-initials">JM</div>
+      </div>
+      <div class="dir-title">Director de Logística</div>
+      <div class="dir-name">Jorge Medina</div>
+      <div class="dir-role">Director de Importaciones</div>
+      <p class="dir-bio">Especialista en comercio exterior con 18 años gestionando importaciones de vehículos desde Europa, EE.UU. y Asia.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── UBICACIÓN ──────────────────────────────────── -->
+<section class="ubicacion-section">
+  <div class="ubicacion-wrap">
+    <div class="ubicacion-info reveal">
+      <p class="s-kicker">Encuéntranos</p>
+      <h2>Visítanos cuando quieras.</h2>
+      <div class="contact-rows" style="margin-top:24px;">
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.485-2.015-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.3"/>
+              <circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-label">Sede principal</div>
+            <div class="contact-value">Av. Winston Churchill 100, Santo Domingo</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 3.5A1.5 1.5 0 0 1 3.5 2h.879a1 1 0 0 1 .948.684l.74 2.219a1 1 0 0 1-.23 1.041L4.5 7.28A9.5 9.5 0 0 0 8.72 11.5l1.335-1.337a1 1 0 0 1 1.042-.23l2.218.74A1 1 0 0 1 14 11.62V12.5A1.5 1.5 0 0 1 12.5 14C6.701 14 2 9.299 2 3.5z" stroke="currentColor" stroke-width="1.3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-label">Teléfono</div>
+            <div class="contact-value">+1 (809) 000-0000</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M1.5 4L8 9.5L14.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-label">Correo</div>
+            <div class="contact-value">info@autoelite.com</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M8 4v4.5l3 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-label">Horario</div>
+            <div class="contact-value">Lun – Sáb · 8:00 AM – 7:00 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map placeholder -->
+    <div class="map-placeholder reveal">
+      <div class="map-grid-bg"></div>
+      <div class="map-road-h"></div>
+      <div class="map-road-v"></div>
+      <div class="map-pin">
+        <div class="map-pin-dot"></div>
+        <div class="map-pin-label">Auto Elite · Sede Principal</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CTA ─────────────────────────────────────────── -->
+<section class="cta-band">
+  <h2 class="reveal">¿Quieres conocernos en persona?</h2>
+  <p class="reveal">Agenda una visita sin compromiso. Te esperamos con café y el auto que buscas.</p>
+  <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="#" class="btn-gold">Agendar visita</a>
+    <a href="inventario.html" class="btn-ghost">Ver inventario</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <p class="logo">Auto Elite</p>
+        <p>Concesionario premium con más de 20 años de experiencia. Tu satisfacción es nuestra garantía.</p>
+      </div>
+      <div class="ft-col">
+        <h6>Vehículos</h6>
+        <a href="inventario.html">Nuevos</a><a href="inventario.html">Usados certificados</a>
+        <a href="#">Eléctricos</a><a href="#">SUVs</a>
+      </div>
+      <div class="ft-col">
+        <h6>Financiamiento</h6>
+        <a href="financiamiento.html">Crédito directo</a><a href="financiamiento.html">Leasing</a>
+        <a href="#">Calculadora</a><a href="#">Solicitar crédito</a>
+      </div>
+      <div class="ft-col">
+        <h6>Servicio</h6>
+        <a href="servicio.html">Agendar cita</a><a href="servicio.html">Mantenimiento</a>
+        <a href="#">Piezas</a><a href="#">Garantías</a>
+      </div>
+      <div class="ft-col">
+        <h6>Contacto</h6>
+        <a href="#">+1 (809) 000-0000</a>
+        <a href="#">info@autoelite.com</a>
+        <a href="#">Av. Winston Churchill 100</a>
+        <a href="#">Lun–Sáb 8am–7pm</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 Auto Elite. Todos los derechos reservados.</p>
+      <div class="ft-bottom-links">
+        <a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
