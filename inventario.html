@@ -245,9 +245,12 @@
     <button class="filter-btn active" onclick="filterCars(this,'all')">Todos</button>
     <button class="filter-btn" onclick="filterCars(this,'nuevo')">Nuevos</button>
     <button class="filter-btn" onclick="filterCars(this,'usado')">Usados</button>
-    <button class="filter-btn" onclick="filterCars(this,'suv')">SUV</button>
+    <button class="filter-btn" onclick="filterCars(this,'deportivo')">Deportivos</button>
+    <button class="filter-btn" onclick="filterCars(this,'superdeportivo')">Superdeportivos</button>
     <button class="filter-btn" onclick="filterCars(this,'sedan')">Sedán</button>
-    <button class="filter-btn" onclick="filterCars(this,'electrico')">Eléctrico</button>
+    <button class="filter-btn" onclick="filterCars(this,'muscle')">Muscle Cars</button>
+    <button class="filter-btn" onclick="filterCars(this,'supergt')">Super GT</button>
+    <button class="filter-btn" onclick="filterCars(this,'granturismo')">Gran Turismo</button>
     <span class="filter-count" id="count">12 vehículos</span>
   </div>
 </div>
@@ -267,26 +270,17 @@
 
     <!-- Featured -->
     <div class="car-card featured reveal" data-type="nuevo sedan" data-price="58900" data-year="2025">
-      <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=900&q=75" alt="BMW Serie 5"/>
+      <img src="img/m31.webp" alt="BMW M3 Competition"/>
       <div class="car-info">
         <span class="car-badge">Nuevo · Destacado</span>
-        <h3>BMW Serie 5</h3>
+        <h3>BMW M3 Competition</h3>
         <p class="car-meta">2025 · Sedán · Automático</p>
         <div class="car-specs">
-          <div class="spec">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-            0–100 en 5.8s
-          </div>
-          <div class="spec">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-            2.0L Turbo
-          </div>
-          <div class="spec">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-            5 plazas
-          </div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 3.5s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>3.0L 6 cilindros</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5 plazas</div>
         </div>
-        <p style="font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:18px;">El Serie 5 redefine el lujo ejecutivo. Interior premium, tecnología de punta y una conducción que responde a cada instinto.</p>
+        <p style="font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:18px;">El sedán deportivo por excelencia. Ofrece un rendimiento de circuito sin sacrificar la practicidad de un coche de cuatro puertas.</p>
         <div class="car-footer">
           <div class="car-price">$58,900<span>desde $890/mes</span></div>
           <a href="detalle-bmw.html" class="btn-sm">Ver detalles →</a>
@@ -295,54 +289,54 @@
     </div>
 
     <!-- Card 2 -->
-    <div class="car-card reveal" data-type="nuevo suv" data-price="64500" data-year="2025">
-      <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=700&q=75" alt="Mercedes GLC" loading="lazy"/>
+    <div class="car-card reveal" data-type="nuevo supergt" data-price="64500" data-year="2025">
+      <img src="img/db1.webp" alt="Aston Martin DB12" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge">Nuevo</span>
-        <h3>Mercedes-Benz GLC</h3>
-        <p class="car-meta">2025 · SUV · Automático</p>
+        <h3>Aston Martin DB12</h3>
+        <p class="car-meta">2026 · Superdeportivo · Automático</p>
         <div class="car-specs">
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 6.1s</div>
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>2.0L Hybrid</div>
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5 plazas</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 3.5s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>4.0L V8</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>2 plazas</div>
         </div>
         <div class="car-footer">
           <div class="car-price">$64,500<span>desde $975/mes</span></div>
-          <a href="detalle-mercedes.html" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-db12.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 3 -->
-    <div class="car-card reveal" data-type="nuevo electrico suv" data-price="52990" data-year="2025">
-      <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=700&q=75" alt="Tesla Model Y" loading="lazy"/>
+    <div class="car-card reveal" data-type="nuevo deportivo" data-price="52990" data-year="2025">
+      <img src="img/gtr2.webp" alt="Nissan GT-R R35" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge">Nuevo</span>
-        <h3>Tesla Model Y</h3>
-        <p class="car-meta">2025 · SUV · Eléctrico</p>
+        <h3>Nissan GT-R R35</h3>
+        <p class="car-meta">2024 · Deportivo · Automático</p>
         <div class="car-specs">
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 3.7s</div>
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Eléctrico</div>
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>7 plazas</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 2.8s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>3.8L V6 Twin-Turbo</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>4 plazas</div>
         </div>
         <div class="car-footer">
           <div class="car-price">$52,990<span>desde $800/mes</span></div>
-          <a href="detalle-tesla-y.html" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-gtr.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 4 -->
-    <div class="car-card reveal" data-type="usado suv" data-price="71200" data-year="2023">
-      <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=700&q=75" alt="Porsche Macan" loading="lazy"/>
+    <div class="car-card reveal" data-type="usado deportivo" data-price="71200" data-year="2023">
+      <img src="img/turbo5.webp" alt="Porsche 911 Turbo S" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge used">Certificado</span>
-        <h3>Porsche Macan S</h3>
-        <p class="car-meta">2023 · SUV · Automático</p>
+        <h3>Porsche 911 Turbo S</h3>
+        <p class="car-meta">2026 · Superdeportivo · Automático</p>
         <div class="car-specs">
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 4.6s</div>
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>3.0L V6</div>
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5 plazas</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 2.7s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>3.7L Bóxer 6</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>2+2 plazas</div>
         </div>
         <div class="car-footer">
           <div class="car-price">$71,200<span>desde $1,075/mes</span></div>
@@ -352,12 +346,12 @@
     </div>
 
     <!-- Card 5 -->
-    <div class="car-card reveal" data-type="usado sedan" data-price="44800" data-year="2022">
-      <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=700&q=75" alt="Audi A6" loading="lazy"/>
+    <div class="car-card reveal" data-type="usado superdeportivo" data-price="44800" data-year="2022">
+      <img src="img/mclaren1.webp" alt="Audi A6" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge used">Certificado</span>
-        <h3>Audi A6 Quattro</h3>
-        <p class="car-meta">2022 · Sedán · Automático</p>
+        <h3>Mclaren 720s</h3>
+        <p class="car-meta">2022 · Superdeportivo· Automático</p>
         <div class="car-specs">
           <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 5.1s</div>
           <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>3.0L TFSI</div>
@@ -365,18 +359,18 @@
         </div>
         <div class="car-footer">
           <div class="car-price">$44,800<span>desde $677/mes</span></div>
-          <a href="detalle-audi.html" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-mclaren.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 6 -->
-    <div class="car-card reveal" data-type="nuevo sedan" data-price="47300" data-year="2025">
-      <img src="https://images.unsplash.com/photo-1616422285623-13ff0162193c?w=700&q=75" alt="Lexus ES" loading="lazy"/>
+    <div class="car-card reveal" data-type="nuevo superdeportivo" data-price="47300" data-year="2025">
+      <img src="img/gt1.webp" alt="Lexus ES" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge">Nuevo</span>
-        <h3>Lexus ES 350</h3>
-        <p class="car-meta">2025 · Sedán · Automático</p>
+        <h3>Ford GT</h3>
+        <p class="car-meta">2025 · Superdeportivo · Automático</p>
         <div class="car-specs">
           <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 7.1s</div>
           <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>3.5L V6</div>
@@ -384,18 +378,18 @@
         </div>
         <div class="car-footer">
           <div class="car-price">$47,300<span>desde $715/mes</span></div>
-          <a href="detalle-lexus.html" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-gt.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 7 -->
-    <div class="car-card reveal" data-type="nuevo suv" data-price="89700" data-year="2025">
-      <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=700&q=75" alt="Range Rover Sport" loading="lazy"/>
+    <div class="car-card reveal" data-type="nuevo granturismo" data-price="89700" data-year="2025">
+      <img src="img/grant.webp" alt="Range Rover Sport" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge">Nuevo</span>
-        <h3>Range Rover Sport</h3>
-        <p class="car-meta">2025 · SUV · Automático</p>
+        <h3>Maserati Gran Turismo</h3>
+        <p class="car-meta">2025 · Superdeportivo · Automático</p>
         <div class="car-specs">
           <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 6.5s</div>
           <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>3.0L Diesel</div>
@@ -403,26 +397,63 @@
         </div>
         <div class="car-footer">
           <div class="car-price">$89,700<span>desde $1,355/mes</span></div>
-          <a href="detalle-range.html" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-grant.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 8 -->
-    <div class="car-card reveal" data-type="usado electrico" data-price="38400" data-year="2023">
-      <img src="https://images.unsplash.com/photo-1561580125-028ee3bd62eb?w=700&q=75" alt="Tesla Model 3" loading="lazy"/>
+    <div class="car-card reveal" data-type="usado muscle" data-price="38400" data-year="2023">
+      <img src="img/mustang1.jpg" alt="Ford Mustang GT" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge used">Certificado</span>
-        <h3>Tesla Model 3</h3>
-        <p class="car-meta">2023 · Sedán · Eléctrico</p>
+        <h3>Ford Mustang GT</h3>
+        <p class="car-meta">2025 · Muscle Car · Automático</p>
         <div class="car-specs">
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 3.1s</div>
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Eléctrico</div>
-          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5 plazas</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 4.2s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5.0L V8 Coyote</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>4 plazas</div>
         </div>
         <div class="car-footer">
-          <div class="car-price">$38,400<span>desde $580/mes</span></div>
-          <a href="detalle-tesla3.html" class="btn-sm">Ver detalles →</a>
+          <div class="car-price">$52,990<span>desde $800/mes</span></div>
+          <a href="detalle-mustang.html" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card reveal" data-type="usado superdeportivo" data-price="38400" data-year="2023">
+      <img src="img/huracan1.webp" alt="Tesla Model 3" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge used">Certificado</span>
+        <h3>Lamborghini Huracán</h3>
+        <p class="car-meta">2024 · Superdeportivo · Automático</p>
+        <div class="car-specs">
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 3.2s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5.2L V10 Atmosférico</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>2 plazas</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$89,700<span>desde $1,355/mes</span></div>
+          <a href="detalle-huracan.html" class="btn-sm">Ver detalles →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="car-card reveal" data-type="usado superdeportivo" data-price="38400" data-year="2023">
+      <img src="img/c81.webp" alt="Chevrolet Corvette C8 Z06" loading="lazy"/>
+      <div class="car-info">
+        <span class="car-badge used">Certificado</span>
+        <h3>Chevrolet Corvette C8 Z06</h3>
+        <p class="car-meta">2025 · Superdeportivo · Automático</p>
+        <div class="car-specs">
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3.5L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>0–100 en 2.6s</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 10c1-4 3-6 6-6s5 2 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M7 7V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>5.5L V8 LT6 (Cigüeñal plano)</div>
+          <div class="spec"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5V4a2 2 0 0 1 4 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>2 plazas</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$71,200<span>desde $1,075/mes</span></div>
+          <a href="detalle-c8.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
@@ -785,4 +816,35 @@
   }
 </script>
 </body>
+
+<!--  <h1> Autores: </h1>
+
+                                                                    :=:                  
+                                                                 :*+=-+*                  
+                                                                -@-                       
+                                                                %@                        
+                                                                @%                        
+                                                               .@*              .         
+                         .:-==++++==:.                         :@*        :**++@@:        
+                  .-+++++--::.::--+*%@@*:                 .:---+@#***+=-+%#=-:-@%         
+              .=**=:     #@          .=@@+     .:-------=-:.=*##@#:.   .@*    #@-         
+           :+%*-         @@            -@@+==--:.  -*++#@@  :. :@=     #@.   :@@:         
+         -%@+            @@    .:-=---:.*@.      =%=   #@#     -@=    .@#    *@@:         
+        =@%             .@%-===-.      .@=      :@+    @@.     -@- .:-*@*===**%@:   .     
+        %@-         .-=-=@%           -%-       %@    -@@     .+@+--:.+@.  -+ %@+-.=      
+        -@*.   .-==-:   :@*        .=#=        :@+    #@@  -==:+@:    +@. =+  *@%*+       
+          +%**+:        -@=    .-+*+:          +@.   +-@@=-..  +@:    =@##=    =-         
+       :==:. .-:       =+@=-+++=:              #@   +--@@. .=  *@.     ++.                
+    :+=.               *@@#:.                  %%  ++:=@@*=-   #@.                        
+  :=:                   %%%%+:               ::#@=*= + =*=.    %@                         
+ =:                    .@= .+%%+:             #-#*:  =         @#                         
+ -                     -@.    .=%@#=.         =-      -*      -@-                         
+                       #*         -+%@*=:     =:       #%=-: .%=                          
+     ..               :@.            .-+#%%%#*-        .#@++#+=---::..              ..:-=.
+     .%               %+                                  ..       .::--===========--:.   
+      +%.            **                                                                   
+       +@+          *+                                                                    
+        .*@*=:   .=#-                                                                     
+           :=*#%#*-    
+-->
 </html>
