@@ -234,7 +234,7 @@
   <div class="page-hero-img"></div>
   <div class="page-hero-content">
     <p class="s-kicker" style="opacity:0;animation:up .5s .05s forwards">Colección 2025</p>
-    <h1>Inventario<br>completo.</h1>
+    <h1>Inventario<br>completo</h1>
     <p>Vehículos nuevos y certificados. Todos con revisión técnica y garantía incluida.</p>
   </div>
 </section>
@@ -256,7 +256,7 @@
 <section class="inv-section">
   <div class="sort-row">
     <label for="sort">Ordenar por:</label>
-    <select id="sort">
+    <select id="sort" onchange="sortCars(this.value)">
       <option>Más recientes</option>
       <option>Menor precio</option>
       <option>Mayor precio</option>
@@ -266,7 +266,7 @@
   <div class="inv-grid" id="carGrid">
 
     <!-- Featured -->
-    <div class="car-card featured reveal" data-type="nuevo sedan">
+    <div class="car-card featured reveal" data-type="nuevo sedan" data-price="58900" data-year="2025">
       <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=900&q=75" alt="BMW Serie 5"/>
       <div class="car-info">
         <span class="car-badge">Nuevo · Destacado</span>
@@ -289,13 +289,13 @@
         <p style="font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:18px;">El Serie 5 redefine el lujo ejecutivo. Interior premium, tecnología de punta y una conducción que responde a cada instinto.</p>
         <div class="car-footer">
           <div class="car-price">$58,900<span>desde $890/mes</span></div>
-          <a href="#" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-bmw.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 2 -->
-    <div class="car-card reveal" data-type="nuevo suv">
+    <div class="car-card reveal" data-type="nuevo suv" data-price="64500" data-year="2025">
       <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=700&q=75" alt="Mercedes GLC" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge">Nuevo</span>
@@ -308,13 +308,13 @@
         </div>
         <div class="car-footer">
           <div class="car-price">$64,500<span>desde $975/mes</span></div>
-          <a href="#" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-mercedes.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 3 -->
-    <div class="car-card reveal" data-type="nuevo electrico suv">
+    <div class="car-card reveal" data-type="nuevo electrico suv" data-price="52990" data-year="2025">
       <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=700&q=75" alt="Tesla Model Y" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge">Nuevo</span>
@@ -327,13 +327,13 @@
         </div>
         <div class="car-footer">
           <div class="car-price">$52,990<span>desde $800/mes</span></div>
-          <a href="#" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-tesla-y.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 4 -->
-    <div class="car-card reveal" data-type="usado suv">
+    <div class="car-card reveal" data-type="usado suv" data-price="71200" data-year="2023">
       <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=700&q=75" alt="Porsche Macan" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge used">Certificado</span>
@@ -346,13 +346,13 @@
         </div>
         <div class="car-footer">
           <div class="car-price">$71,200<span>desde $1,075/mes</span></div>
-          <a href="#" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-porsche.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 5 -->
-    <div class="car-card reveal" data-type="usado sedan">
+    <div class="car-card reveal" data-type="usado sedan" data-price="44800" data-year="2022">
       <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=700&q=75" alt="Audi A6" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge used">Certificado</span>
@@ -365,13 +365,13 @@
         </div>
         <div class="car-footer">
           <div class="car-price">$44,800<span>desde $677/mes</span></div>
-          <a href="#" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-audi.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 6 -->
-    <div class="car-card reveal" data-type="nuevo sedan">
+    <div class="car-card reveal" data-type="nuevo sedan" data-price="47300" data-year="2025">
       <img src="https://images.unsplash.com/photo-1616422285623-13ff0162193c?w=700&q=75" alt="Lexus ES" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge">Nuevo</span>
@@ -384,13 +384,13 @@
         </div>
         <div class="car-footer">
           <div class="car-price">$47,300<span>desde $715/mes</span></div>
-          <a href="#" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-lexus.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 7 -->
-    <div class="car-card reveal" data-type="nuevo suv">
+    <div class="car-card reveal" data-type="nuevo suv" data-price="89700" data-year="2025">
       <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=700&q=75" alt="Range Rover Sport" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge">Nuevo</span>
@@ -403,13 +403,13 @@
         </div>
         <div class="car-footer">
           <div class="car-price">$89,700<span>desde $1,355/mes</span></div>
-          <a href="#" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-range.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
 
     <!-- Card 8 -->
-    <div class="car-card reveal" data-type="usado electrico">
+    <div class="car-card reveal" data-type="usado electrico" data-price="38400" data-year="2023">
       <img src="https://images.unsplash.com/photo-1561580125-028ee3bd62eb?w=700&q=75" alt="Tesla Model 3" loading="lazy"/>
       <div class="car-info">
         <span class="car-badge used">Certificado</span>
@@ -422,7 +422,7 @@
         </div>
         <div class="car-footer">
           <div class="car-price">$38,400<span>desde $580/mes</span></div>
-          <a href="#" class="btn-sm">Ver detalles →</a>
+          <a href="detalle-tesla3.html" class="btn-sm">Ver detalles →</a>
         </div>
       </div>
     </div>
@@ -430,12 +430,7 @@
   </div>
 
   <!-- Pagination -->
-  <div class="pagination">
-    <button class="pg-btn active">1</button>
-    <button class="pg-btn">2</button>
-    <button class="pg-btn">3</button>
-    <button class="pg-btn">›</button>
-  </div>
+  <div class="pagination" id="pagination"></div>
 </section>
 
 <!-- ── PROMO BAND ─────────────────────────────────── -->
@@ -445,7 +440,7 @@
     <p class="s-kicker reveal">Oferta especial</p>
     <h2 class="reveal">Tu auto usado vale más de lo que crees.</h2>
     <p class="reveal">Valuación gratuita. Aplicamos el monto como enganche en tu próxima compra.</p>
-    <div class="reveal"><a href="#" class="btn-gold">Valuar mi auto</a></div>
+    <div class="reveal"><a href="#" class="btn-gold" onclick="openModal('modalValuar');return false;">Valuar mi auto</a></div>
   </div>
 </section>
 
@@ -454,10 +449,194 @@
   <h2 class="reveal">¿No encuentras lo que buscas?</h2>
   <p class="reveal">Cuéntanos qué necesitas y nuestro equipo lo encontrará por ti.</p>
   <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-    <a href="#" class="btn-gold">Hablar con un asesor</a>
-    <a href="#" class="btn-ghost">Agendar visita</a>
+    <a href="#" class="btn-gold" onclick="openModal('modalAsesor');return false;">Hablar con un asesor</a>
+    <a href="#" class="btn-ghost" onclick="openModal('modalVisita');return false;">Agendar visita</a>
   </div>
 </section>
+
+<!-- ── MODALS ──────────────────────────────────────── -->
+<style>
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,.55);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--white); border-radius: 16px;
+    padding: 40px 36px; width: 100%; max-width: 480px;
+    position: relative; max-height: 90vh; overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 18px;
+    background: none; border: none; font-size: 22px; cursor: pointer;
+    color: var(--mid); line-height: 1;
+  }
+  .modal-box h3 {
+    font-size: 22px; font-weight: 700; letter-spacing: -.02em;
+    color: var(--ink); margin-bottom: 6px;
+  }
+  .modal-box > p {
+    font-size: 14px; color: var(--mid); line-height: 1.6; margin-bottom: 24px;
+  }
+  .m-field { margin-bottom: 14px; }
+  .m-field label {
+    display: block; font-size: 11px; font-weight: 700;
+    letter-spacing: .05em; text-transform: uppercase;
+    color: var(--mid); margin-bottom: 6px;
+  }
+  .m-field input, .m-field select, .m-field textarea {
+    width: 100%; padding: 10px 12px;
+    border: 1px solid var(--border); border-radius: 6px;
+    font-size: 13px; font-family: inherit;
+    background: var(--white); color: var(--ink);
+    outline: none; transition: border-color .2s;
+    resize: vertical;
+  }
+  .m-field input:focus, .m-field select:focus, .m-field textarea:focus {
+    border-color: var(--accent);
+  }
+  .m-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .m-submit {
+    width: 100%; margin-top: 8px; padding: 12px;
+    border: none; border-radius: 6px;
+    background: var(--accent); color: var(--ink);
+    font-size: 13px; font-weight: 700; letter-spacing: .05em;
+    text-transform: uppercase; cursor: pointer;
+    font-family: inherit; transition: opacity .18s;
+  }
+  .m-submit:hover { opacity: .88; }
+  .m-success { display: none; text-align: center; padding: 32px 0; }
+  .m-success .m-check {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--light); display: flex; align-items: center;
+    justify-content: center; margin: 0 auto 16px;
+  }
+  .m-success h4 { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .m-success p { font-size: 14px; color: var(--mid); line-height: 1.6; }
+</style>
+
+<!-- Modal: Valuar auto -->
+<div class="modal-overlay" id="modalValuar">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalValuar')">×</button>
+    <div id="valuarForm">
+      <h3>Valuar mi auto</h3>
+      <p>Ingresa los datos de tu vehículo y un asesor te contactará con una valuación gratuita en menos de 24 horas.</p>
+      <div class="m-2col">
+        <div class="m-field"><label>Marca</label><input type="text" placeholder="Ej. Toyota"/></div>
+        <div class="m-field"><label>Modelo</label><input type="text" placeholder="Ej. Camry"/></div>
+      </div>
+      <div class="m-2col">
+        <div class="m-field"><label>Año</label><input type="number" placeholder="2020" min="2000" max="2025"/></div>
+        <div class="m-field"><label>Kilometraje</label><input type="text" placeholder="Ej. 45,000 km"/></div>
+      </div>
+      <div class="m-field"><label>Condición general</label>
+        <select>
+          <option value="">Seleccionar</option>
+          <option>Excelente — como nuevo</option>
+          <option>Buena — desgaste normal</option>
+          <option>Regular — requiere reparaciones menores</option>
+          <option>Necesita reparación</option>
+        </select>
+      </div>
+      <div class="m-2col">
+        <div class="m-field"><label>Tu nombre</label><input type="text" placeholder="Juan Pérez"/></div>
+        <div class="m-field"><label>Teléfono</label><input type="tel" placeholder="+1 (809) 000-0000"/></div>
+      </div>
+      <div class="m-field"><label>Correo electrónico</label><input type="email" placeholder="juan@correo.com"/></div>
+      <button class="m-submit" onclick="submitModal('valuarForm','valuarSuccess')">Solicitar valuación gratuita</button>
+    </div>
+    <div class="m-success" id="valuarSuccess">
+      <div class="m-check"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5 9-9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h4>¡Solicitud enviada!</h4>
+      <p>Te contactaremos en menos de 24 horas con la valuación de tu vehículo.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Hablar con asesor -->
+<div class="modal-overlay" id="modalAsesor">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalAsesor')">×</button>
+    <div id="asesorForm">
+      <h3>Hablar con un asesor</h3>
+      <p>Déjanos tus datos y un asesor especializado te contactará lo antes posible para ayudarte a encontrar tu auto ideal.</p>
+      <div class="m-2col">
+        <div class="m-field"><label>Nombre</label><input type="text" placeholder="Juan"/></div>
+        <div class="m-field"><label>Apellido</label><input type="text" placeholder="Pérez"/></div>
+      </div>
+      <div class="m-field"><label>Teléfono</label><input type="tel" placeholder="+1 (809) 000-0000"/></div>
+      <div class="m-field"><label>Correo electrónico</label><input type="email" placeholder="juan@correo.com"/></div>
+      <div class="m-field"><label>¿En qué vehículo estás interesado?</label>
+        <input type="text" placeholder="Ej. SUV nuevo, menos de $60,000"/>
+      </div>
+      <div class="m-field"><label>Horario preferido de contacto</label>
+        <select>
+          <option value="">Seleccionar</option>
+          <option>Mañana (8am – 12pm)</option>
+          <option>Tarde (12pm – 5pm)</option>
+          <option>Noche (5pm – 7pm)</option>
+          <option>Cualquier hora</option>
+        </select>
+      </div>
+      <div class="m-field"><label>Mensaje adicional <span style="font-weight:400;text-transform:none;letter-spacing:0;">(opcional)</span></label>
+        <textarea rows="3" placeholder="Cuéntanos más sobre lo que buscas…"></textarea>
+      </div>
+      <button class="m-submit" onclick="submitModal('asesorForm','asesorSuccess')">Solicitar contacto</button>
+    </div>
+    <div class="m-success" id="asesorSuccess">
+      <div class="m-check"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5 9-9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h4>¡Solicitud recibida!</h4>
+      <p>Un asesor te contactará en el horario que indicaste. ¡Gracias por preferir Auto Elite!</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Agendar visita -->
+<div class="modal-overlay" id="modalVisita">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalVisita')">×</button>
+    <div id="visitaForm">
+      <h3>Agendar visita</h3>
+      <p>Reserva tu cita en la agencia. Te esperamos con los vehículos de tu interés listos para una prueba de manejo.</p>
+      <div class="m-2col">
+        <div class="m-field"><label>Nombre</label><input type="text" placeholder="Juan"/></div>
+        <div class="m-field"><label>Apellido</label><input type="text" placeholder="Pérez"/></div>
+      </div>
+      <div class="m-field"><label>Teléfono</label><input type="tel" placeholder="+1 (809) 000-0000"/></div>
+      <div class="m-field"><label>Correo electrónico</label><input type="email" placeholder="juan@correo.com"/></div>
+      <div class="m-2col">
+        <div class="m-field"><label>Fecha preferida</label><input type="date"/></div>
+        <div class="m-field"><label>Hora</label>
+          <select>
+            <option value="">Seleccionar</option>
+            <option>9:00 AM</option><option>10:00 AM</option>
+            <option>11:00 AM</option><option>12:00 PM</option>
+            <option>2:00 PM</option><option>3:00 PM</option>
+            <option>4:00 PM</option><option>5:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="m-field"><label>Vehículo de interés <span style="font-weight:400;text-transform:none;letter-spacing:0;">(opcional)</span></label>
+        <input type="text" placeholder="Ej. BMW Serie 5, Mercedes GLC…"/>
+      </div>
+      <div class="m-field"><label>¿Quieres traer tu auto para valuación?</label>
+        <select>
+          <option>No por ahora</option>
+          <option>Sí, quiero valuar mi auto actual</option>
+        </select>
+      </div>
+      <button class="m-submit" onclick="submitModal('visitaForm','visitaSuccess')">Confirmar cita</button>
+    </div>
+    <div class="m-success" id="visitaSuccess">
+      <div class="m-check"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5 9-9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h4>¡Cita confirmada!</h4>
+      <p>Recibirás un correo de confirmación. Te esperamos en Auto Elite. Lun–Sáb, 8am–7pm.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ── FOOTER ─────────────────────────────────────── -->
 <footer>
@@ -501,19 +680,108 @@
 
 <script src="main.js"></script>
 <script>
-  // Filter logic
+  const CARDS_PER_PAGE = 6;
+  let currentFilter = 'all';
+  let currentPage   = 1;
+
+  // ── SORT ──────────────────────────────────────────
+  function sortCars(val) {
+    const grid = document.getElementById('carGrid');
+    const cards = Array.from(grid.querySelectorAll('.car-card'));
+    cards.sort((a, b) => {
+      const pa = parseInt(a.dataset.price || 0);
+      const pb = parseInt(b.dataset.price || 0);
+      const ya = parseInt(a.dataset.year  || 0);
+      const yb = parseInt(b.dataset.year  || 0);
+      if (val === 'Menor precio')  return pa - pb;
+      if (val === 'Mayor precio')  return pb - pa;
+      if (val === 'Más recientes') return yb - ya;
+      return 0; // Mejor valorados — keep original order
+    });
+    cards.forEach(c => grid.appendChild(c));
+    renderPage();
+  }
+
+  // ── FILTER ────────────────────────────────────────
   function filterCars(btn, type) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const cards = document.querySelectorAll('#carGrid .car-card');
-    let visible = 0;
-    cards.forEach(card => {
-      const types = card.dataset.type || '';
-      const show = type === 'all' || types.includes(type);
-      card.style.display = show ? '' : 'none';
-      if (show) visible++;
+    currentFilter = type;
+    currentPage   = 1;
+    renderPage();
+  }
+
+  // ── PAGINATION + FILTER RENDER ────────────────────
+  function renderPage() {
+    const grid  = document.getElementById('carGrid');
+    const cards = Array.from(grid.querySelectorAll('.car-card'));
+
+    // Filter
+    const visible = cards.filter(c => {
+      const types = c.dataset.type || '';
+      return currentFilter === 'all' || types.includes(currentFilter);
     });
-    document.getElementById('count').textContent = visible + ' vehículo' + (visible !== 1 ? 's' : '');
+
+    // Count
+    document.getElementById('count').textContent =
+      visible.length + ' vehículo' + (visible.length !== 1 ? 's' : '');
+
+    // Pagination math
+    const totalPages = Math.max(1, Math.ceil(visible.length / CARDS_PER_PAGE));
+    if (currentPage > totalPages) currentPage = totalPages;
+    const start = (currentPage - 1) * CARDS_PER_PAGE;
+    const end   = start + CARDS_PER_PAGE;
+
+    // Show/hide cards
+    cards.forEach(c => { c.style.display = 'none'; });
+    visible.forEach((c, i) => {
+      c.style.display = (i >= start && i < end) ? '' : 'none';
+    });
+
+    // Render pagination buttons
+    const pg = document.getElementById('pagination');
+    pg.innerHTML = '';
+
+    function pgBtn(label, page, isActive, isDisabled) {
+      const b = document.createElement('button');
+      b.className = 'pg-btn' + (isActive ? ' active' : '');
+      b.textContent = label;
+      b.disabled = isDisabled;
+      if (!isDisabled) b.onclick = () => { currentPage = page; renderPage(); window.scrollTo({top: document.querySelector('.inv-section').offsetTop - 80, behavior:'smooth'}); };
+      return b;
+    }
+
+    pg.appendChild(pgBtn('‹', currentPage - 1, false, currentPage === 1));
+    for (let i = 1; i <= totalPages; i++) {
+      pg.appendChild(pgBtn(i, i, i === currentPage, false));
+    }
+    pg.appendChild(pgBtn('›', currentPage + 1, false, currentPage === totalPages));
+  }
+
+  // Init
+  renderPage();
+
+  // ── MODALS ────────────────────────────────────────
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(el => {
+    el.addEventListener('click', e => { if (e.target === el) closeModal(el.id); });
+  });
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(el => closeModal(el.id));
+  });
+
+  function submitModal(formId, successId) {
+    document.getElementById(formId).style.display = 'none';
+    document.getElementById(successId).style.display = 'block';
   }
 </script>
 </body>

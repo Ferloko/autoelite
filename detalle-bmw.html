@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BMW Serie 5 — Auto Elite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .gallery-wrap{margin-top:var(--nav-h);background:var(--light);padding:32px 24px}
+    .gallery-inner{max-width:1120px;margin:0 auto}
+    .breadcrumb{font-size:12px;color:var(--mid);margin-bottom:20px;display:flex;gap:6px;align-items:center}
+    .breadcrumb a{color:var(--mid);text-decoration:none}.breadcrumb a:hover{color:var(--ink)}.breadcrumb span{opacity:.4}
+    .gallery-grid{display:grid;grid-template-columns:1fr 280px;grid-template-rows:340px 160px;gap:8px}
+    .gallery-grid .main-img{grid-row:span 2;border-radius:12px;overflow:hidden;cursor:zoom-in}
+    .gallery-grid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+    .gallery-grid .main-img:hover img{transform:scale(1.03)}
+    .gallery-thumb{border-radius:10px;overflow:hidden;cursor:pointer;transition:opacity .2s}.gallery-thumb:hover{opacity:.85}
+    .gallery-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .detail-layout{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:48px;padding:48px 24px 80px;align-items:start}
+    .d-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:3px 10px;border-radius:3px;margin-bottom:12px}
+    .d-badge.used{color:var(--mid);border-color:var(--mid)}
+    .detail-left h1{font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.03em;color:var(--ink);margin-bottom:6px;line-height:1.08}
+    .d-meta{font-size:14px;color:var(--mid);margin-bottom:28px}
+    .specs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px}
+    .spec-box{background:var(--white);padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+    .spec-box .s-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+    .spec-box .s-val{font-size:15px;font-weight:700;color:var(--ink)}
+    .d-section-title{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+    .d-description{font-size:15px;color:var(--mid);line-height:1.75;margin-bottom:36px}
+    .colors-row{display:flex;gap:10px;margin-bottom:36px;flex-wrap:wrap}
+    .color-swatch{width:36px;height:36px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:border-color .18s;position:relative}
+    .color-swatch.active,.color-swatch:hover{border-color:var(--accent)}
+    .features-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px}
+    .feat-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--mid);line-height:1.5}
+    .feat-item svg{flex-shrink:0;margin-top:1px;color:var(--accent)}
+    .detail-right{position:sticky;top:calc(var(--nav-h) + 24px)}
+    .purchase-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+    .steps-header{display:flex;border-bottom:1px solid var(--border)}
+    .step-tab{flex:1;padding:14px 8px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mid);border-bottom:2px solid transparent;cursor:pointer;transition:color .2s}
+    .step-tab.done{color:var(--accent)}.step-tab.active{color:var(--ink);border-bottom-color:var(--accent)}
+    .step-tab .step-num{display:block;font-size:16px;font-weight:700;margin-bottom:2px;color:inherit}
+    .step-panel{display:none;padding:24px}.step-panel.active{display:block}
+    .price-display{margin-bottom:20px}
+    .price-display .p-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);margin-bottom:4px}
+    .price-display .p-main{font-size:32px;font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1}
+    .price-display .p-sub{font-size:13px;color:var(--mid);margin-top:4px}
+    .step-colors{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+    .color-opt{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:border-color .18s,background .18s;font-size:13px;color:var(--mid)}
+    .color-opt:hover{border-color:var(--accent)}
+    .color-opt.active{border-color:var(--accent);background:#fdf8ef;color:var(--ink);font-weight:600}
+    .color-dot{width:18px;height:18px;border-radius:50%;flex-shrink:0;border:1px solid rgba(0,0,0,.08)}
+    .finance-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+    .finance-opt{border:1px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;transition:border-color .18s,background .18s}
+    .finance-opt:hover{border-color:var(--accent)}.finance-opt.active{border-color:var(--accent);background:#fdf8ef}
+    .finance-opt .fo-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px}
+    .finance-opt .fo-desc{font-size:12px;color:var(--mid)}.finance-opt .fo-price{font-size:15px;font-weight:700;color:var(--accent);margin-top:6px}
+    .plazo-row{margin-bottom:20px}
+    .plazo-row label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);display:flex;justify-content:space-between;margin-bottom:10px}
+    .plazo-row label span{color:var(--ink)}
+    input[type=range]{width:100%;appearance:none;height:4px;background:var(--border);border-radius:2px;outline:none;cursor:pointer}
+    input[type=range]::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid var(--white);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+    .f-field{margin-bottom:10px}
+    .f-field label{display:block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);margin-bottom:5px}
+    .f-field input,.f-field select{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;color:var(--ink);background:var(--white);outline:none;transition:border-color .2s}
+    .f-field input:focus,.f-field select:focus{border-color:var(--accent)}
+    .confirm-rows{margin-bottom:20px}
+    .confirm-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px}
+    .confirm-row:last-child{border-bottom:none}.confirm-row .cr-label{color:var(--mid)}.confirm-row .cr-val{font-weight:600;color:var(--ink);text-align:right}
+    .confirm-total{display:flex;justify-content:space-between;padding:14px 0 0;font-size:15px;font-weight:700;color:var(--ink);border-top:2px solid var(--ink);margin-bottom:6px}
+    .confirm-total .cr-val{color:var(--accent);font-size:18px}
+    .btn-next{width:100%;padding:13px;border:none;border-radius:8px;background:var(--accent);color:var(--ink);font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:opacity .18s;margin-top:4px}
+    .btn-next:hover{opacity:.88}
+    .btn-back{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--mid);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:all .18s;margin-top:8px}
+    .btn-back:hover{border-color:var(--mid);color:var(--ink)}
+    .success-panel{display:none;padding:32px 24px;text-align:center}
+    .success-panel .s-icon{width:56px;height:56px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+    .success-panel h3{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px}
+    .success-panel p{font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:20px}
+    .success-panel .ref{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);margin-bottom:4px}
+    .success-panel .ref-code{font-size:22px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+    .side-note{display:flex;gap:10px;align-items:flex-start;padding:14px 16px;background:var(--light);border-radius:10px;margin-top:12px;font-size:12px;color:var(--mid);line-height:1.55}
+    .side-note svg{flex-shrink:0;color:var(--accent);margin-top:1px}
+    @media (max-width:860px){
+      .gallery-grid{grid-template-columns:1fr;grid-template-rows:260px 120px}
+      .gallery-grid .main-img{grid-row:span 1}
+      .detail-layout{grid-template-columns:1fr}
+      .detail-right{position:static}
+      .specs-grid{grid-template-columns:repeat(2,1fr)}
+      .features-list{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<nav id="nav">
+  <div class="nav-wrap">
+    <a class="n-logo" href="index.html">Auto Elite</a>
+    <ul class="n-links">
+      <li><a href="inventario.html">Vehículos</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col"><p class="dd-label">Nuevos</p><p class="dd-title">Ver inventario</p><a href="inventario.html">Sedanes</a><a href="inventario.html">SUVs</a><a href="inventario.html">Eléctricos</a></div>
+          <div class="dd-col"><p class="dd-label">Usados</p><a href="inventario.html">Certificados</a><a href="inventario.html">Todos los usados</a></div>
+          <div class="dd-col"><p class="dd-label">Herramientas</p><a href="inventario.html">Comparar modelos</a><a href="financiamiento.html#calculadora">Calculadora de pagos</a><a href="inventario.html">Valorar mi auto</a></div>
+        </div></div>
+      </li>
+      <li><a href="financiamiento.html">Financiamiento</a>
+        <div class="dd"><div class="dd-inner">
+          <div class="dd-col"><p class="dd-label">Opciones</p><p class="dd-title">Financia tu auto</p><a href="financiamiento.html#planes">Crédito directo</a><a href="financiamiento.html#planes">Leasing</a></div>
+          <div class="dd-col"><p class="dd-label">Herramientas</p><a href="financiamiento.html#calculadora">Calculadora de cuotas</a><a href="financiamiento.html#solicitar">Solicitar crédito</a></div>
+        </div></div>
+      </li>
+      <li><a href="servicio.html">Servicio</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+    </ul>
+    <div class="n-icons">
+      <a href="inventario.html" aria-label="Buscar"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.3"/><line x1="10.5" y1="10.5" x2="14.5" y2="14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></a>
+      <a href="#" aria-label="Contacto"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 4L8 9.5L14.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></a>
+    </div>
+  </div>
+</nav>
+
+<div class="gallery-wrap">
+  <div class="gallery-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Inicio</a><span>/</span>
+      <a href="inventario.html">Inventario</a><span>/</span>
+      <span>BMW Serie 5</span>
+    </div>
+    <div class="gallery-grid">
+      <div class="main-img"><img id="img-main" src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200&q=80" alt="BMW Serie 5"/></div>
+      <div class="gallery-thumb"><img id="img-t1" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=75" alt="BMW Serie 5" onclick="swapMain(this)"/></div>
+      <div class="gallery-thumb"><img id="img-t2" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=75" alt="BMW Serie 5" onclick="swapMain(this)"/></div>
+    </div>
+  </div>
+</div>
+
+<div class="detail-layout">
+  <div class="detail-left">
+    <span class="d-badge">Nuevo</span>
+    <h1>BMW Serie 5</h1>
+    <p class="d-meta">2025 · Sedán · Automático</p>
+    <div class="specs-grid">
+      <div class="spec-box"><span class="s-label">0–100 km/h</span><span class="s-val">5.8s</span></div>
+      <div class="spec-box"><span class="s-label">Motor</span><span class="s-val">2.0L Turbo</span></div>
+      <div class="spec-box"><span class="s-label">Potencia</span><span class="s-val">245 CV</span></div>
+      <div class="spec-box"><span class="s-label">Transmisión</span><span class="s-val">Automática 8V</span></div>
+      <div class="spec-box"><span class="s-label">Plazas</span><span class="s-val">5</span></div>
+      <div class="spec-box"><span class="s-label">Año</span><span class="s-val">2025</span></div></div>
+    <p class="d-section-title">Descripción</p>
+    <p class="d-description">El BMW Serie 5 2025 redefine el concepto de sedán ejecutivo. Con un interior completamente renovado, tecnología de conducción de última generación y un motor turbo que entrega 245 CV, cada kilómetro es una experiencia diseñada para el conductor.</p>
+    <p class="d-section-title">Colores disponibles</p>
+    <div class="colors-row">
+      <div class="color-swatch" title="Negro Zafiro" style="background:#1a1a1a"></div>
+      <div class="color-swatch" title="Blanco Alpino" style="background:#f2f2f0"></div>
+      <div class="color-swatch" title="Azul Mediterráneo" style="background:#2b4b8c"></div>
+      <div class="color-swatch" title="Gris Manhattan" style="background:#8a8d91"></div>
+      <div class="color-swatch" title="Rojo Carmesí" style="background:#8b1a1a"></div></div>
+    <p class="d-section-title">Equipamiento destacado</p>
+    <div class="features-list">
+      <div class="feat-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Pantalla iDrive 8.5" curva</div>
+      <div class="feat-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Head-Up Display</div>
+      <div class="feat-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Asientos de cuero Merino</div>
+      <div class="feat-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Sistema Harman Kardon 16 alt.</div>
+      <div class="feat-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Cámara 360°</div>
+      <div class="feat-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Techo panorámico eléctrico</div>
+      <div class="feat-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Conducción semiautónoma L2</div>
+      <div class="feat-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Carga inalámbrica</div></div>
+  </div>
+  <div class="detail-right">
+    <div class="purchase-card">
+      <div class="steps-header" id="steps-header">
+        <div class="step-tab active" id="tab-1"><span class="step-num">1</span>Color</div>
+        <div class="step-tab" id="tab-2"><span class="step-num">2</span>Financiamiento</div>
+        <div class="step-tab" id="tab-3"><span class="step-num">3</span>Datos</div>
+        <div class="step-tab" id="tab-4"><span class="step-num">4</span>Confirmar</div>
+      </div>
+      <div class="step-panel active" id="panel-1">
+        <div class="price-display">
+          <p class="p-label">Precio</p>
+          <p class="p-main">$58,900</p>
+          <p class="p-sub">desde $890/mes con financiamiento</p>
+        </div>
+        <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;">Elige tu color</p>
+        <div class="step-colors" id="step-colors"></div>
+        <button class="btn-next" onclick="goStep(2)">Continuar &#8594;</button>
+        <div class="side-note"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M7 5v2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="7" cy="10" r=".8" fill="currentColor"/></svg>Esta es una solicitud de reserva. Un asesor confirmará disponibilidad de color.</div>
+      </div>
+      <div class="step-panel" id="panel-2">
+        <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;">Tipo de financiamiento</p>
+        <div class="finance-opts" id="finance-opts"></div>
+        <div class="plazo-row" id="plazo-wrap">
+          <label>Plazo <span id="plazo-label">48 meses</span></label>
+          <input type="range" id="plazo-range" min="12" max="84" step="12" value="48" oninput="updatePlazo(this.value)"/>
+        </div>
+        <div style="background:var(--light);border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:13px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="color:var(--mid);">Enganche estimado</span><span style="font-weight:700;color:var(--ink);" id="enganche-val">—</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="color:var(--mid);">Cuota mensual estimada</span><span style="font-weight:700;color:var(--accent);" id="cuota-val">—</span></div>
+        </div>
+        <button class="btn-next" onclick="goStep(3)">Continuar &#8594;</button>
+        <button class="btn-back" onclick="goStep(1)">&#8592; Volver</button>
+      </div>
+      <div class="step-panel" id="panel-3">
+        <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;">Tus datos</p>
+        <div class="form-grid">
+          <div class="f-field"><label>Nombre</label><input type="text" id="f-nombre" placeholder="Juan"/></div>
+          <div class="f-field"><label>Apellido</label><input type="text" id="f-apellido" placeholder="Pérez"/></div>
+        </div>
+        <div class="f-field"><label>Correo electrónico</label><input type="email" id="f-email" placeholder="juan@correo.com"/></div>
+        <div class="f-field"><label>Teléfono</label><input type="tel" id="f-tel" placeholder="+1 (809) 000-0000"/></div>
+        <div class="f-field"><label>Cédula / Pasaporte</label><input type="text" id="f-cedula" placeholder="000-0000000-0"/></div>
+        <div class="f-field"><label>Horario de contacto preferido</label><select id="f-horario"><option value="">Seleccionar</option><option>Mañana (8am – 12pm)</option><option>Tarde (12pm – 5pm)</option><option>Noche (5pm – 7pm)</option></select></div>
+        <button class="btn-next" onclick="goConfirm()">Revisar solicitud &#8594;</button>
+        <button class="btn-back" onclick="goStep(2)">&#8592; Volver</button>
+      </div>
+      <div class="step-panel" id="panel-4">
+        <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;">Resumen de solicitud</p>
+        <div class="confirm-rows" id="confirm-rows"></div>
+        <div class="confirm-total"><span>Precio total</span><span class="cr-val" id="confirm-total-val">—</span></div>
+        <p style="font-size:11px;color:var(--mid);line-height:1.6;margin-bottom:16px;">Al enviar esta solicitud, un asesor de Auto Elite te contactará para confirmar disponibilidad.</p>
+        <button class="btn-next" onclick="submitRequest()">Enviar solicitud</button>
+        <button class="btn-back" onclick="goStep(3)">&#8592; Volver</button>
+      </div>
+      <div class="success-panel" id="success-panel">
+        <div class="s-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6 10-10" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>¡Solicitud enviada!</h3>
+        <p>Un asesor de Auto Elite se comunicará contigo en las próximas 24 horas hábiles para confirmar tu reserva.</p>
+        <p class="ref">Número de referencia</p>
+        <p class="ref-code" id="ref-code">—</p>
+        <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px;">
+          <a href="inventario.html" style="display:block;text-align:center;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);text-decoration:none;padding:10px;border:1px solid var(--accent);border-radius:8px;">Ver más vehículos</a>
+          <a href="financiamiento.html" style="display:block;text-align:center;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mid);text-decoration:none;padding:10px;border:1px solid var(--border);border-radius:8px;">Explorar financiamiento</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand"><p class="logo">Auto Elite</p><p>Concesionario premium con más de 20 años de experiencia. Tu satisfacción es nuestra garantía.</p></div>
+      <div class="ft-col"><h6>Vehículos</h6><a href="inventario.html">Nuevos</a><a href="inventario.html">Usados certificados</a><a href="inventario.html">Eléctricos</a></div>
+      <div class="ft-col"><h6>Financiamiento</h6><a href="financiamiento.html">Crédito directo</a><a href="financiamiento.html">Leasing</a><a href="financiamiento.html">Calculadora</a></div>
+      <div class="ft-col"><h6>Servicio</h6><a href="#">Agendar cita</a><a href="#">Mantenimiento</a><a href="#">Garantías</a></div>
+      <div class="ft-col"><h6>Contacto</h6><a href="#">+1 (809) 000-0000</a><a href="#">info@autoelite.com</a><a href="#">Lun–Sáb 8am–7pm</a></div>
+    </div>
+    <div class="ft-bottom"><p>© 2026 Auto Elite. Todos los derechos reservados.</p><div class="ft-bottom-links"><a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Cookies</a></div></div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+const CAR = {"name": "BMW Serie 5", "price": 58900, "mensual": 890, "enganche": 0.15, "colors": [{"name": "Negro Zafiro", "hex": "#1a1a1a"}, {"name": "Blanco Alpino", "hex": "#f2f2f0"}, {"name": "Azul Mediterr\u00e1neo", "hex": "#2b4b8c"}, {"name": "Gris Manhattan", "hex": "#8a8d91"}, {"name": "Rojo Carmes\u00ed", "hex": "#8b1a1a"}]};
+const PLANS = [
+  { id: 'credito', title: 'Crédito directo',   desc: 'Financiamiento bancario tradicional',           rate: 0.009  },
+  { id: 'leasing', title: 'Leasing',            desc: 'Cuotas mensuales, opción de compra al final',  rate: 0.0075 },
+  { id: 'contado', title: 'Contado',            desc: 'Pago único sin intereses',                     rate: 0      },
+];
+let state = { car: CAR, color: CAR.colors[0].name, finance: 'credito', plazo: 48 };
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('on-light', window.scrollY > 20); });
+nav.classList.add('on-light');
+const sc = document.getElementById('step-colors');
+CAR.colors.forEach((c, i) => {
+  const el = document.createElement('div');
+  el.className = 'color-opt' + (i === 0 ? ' active' : '');
+  el.innerHTML = `<div class="color-dot" style="background:${c.hex}"></div>${c.name}`;
+  el.onclick = () => { document.querySelectorAll('.color-opt').forEach(x => x.classList.remove('active')); el.classList.add('active'); state.color = c.name; };
+  sc.appendChild(el);
+});
+const fo = document.getElementById('finance-opts');
+PLANS.forEach((p, i) => {
+  const monthly = p.rate > 0 ? Math.round(CAR.price * (1 - CAR.enganche) * p.rate / (1 - Math.pow(1 + p.rate, -48))) : 0;
+  const priceStr = p.id === 'contado' ? `$${CAR.price.toLocaleString()} único` : `~$${monthly.toLocaleString()}/mes`;
+  const el = document.createElement('div');
+  el.className = 'finance-opt' + (i === 0 ? ' active' : '');
+  el.innerHTML = `<div class="fo-title">${p.title}</div><div class="fo-desc">${p.desc}</div><div class="fo-price">${priceStr}</div>`;
+  el.onclick = () => { document.querySelectorAll('.finance-opt').forEach(x => x.classList.remove('active')); el.classList.add('active'); state.finance = p.id; document.getElementById('plazo-wrap').style.display = p.id === 'contado' ? 'none' : ''; updatePlazo(state.plazo); };
+  fo.appendChild(el);
+});
+updatePlazo(48);
+function updatePlazo(val) {
+  state.plazo = parseInt(val);
+  document.getElementById('plazo-label').textContent = val + ' meses';
+  const p = PLANS.find(x => x.id === state.finance) || PLANS[0];
+  const enganche = Math.round(CAR.price * CAR.enganche);
+  const monto = CAR.price - enganche;
+  const cuota = p.rate > 0 ? Math.round(monto * p.rate / (1 - Math.pow(1 + p.rate, -state.plazo))) : 0;
+  document.getElementById('enganche-val').textContent = '$' + enganche.toLocaleString();
+  document.getElementById('cuota-val').textContent = cuota > 0 ? '$' + cuota.toLocaleString() + '/mes' : 'Pago único al contado';
+}
+function goStep(n) {
+  [1,2,3,4].forEach(i => { document.getElementById('panel-' + i).classList.toggle('active', i === n); const t = document.getElementById('tab-' + i); t.classList.remove('active','done'); if (i === n) t.classList.add('active'); else if (i < n) t.classList.add('done'); });
+}
+function goConfirm() {
+  const nombre = document.getElementById('f-nombre').value.trim();
+  const apellido = document.getElementById('f-apellido').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const tel = document.getElementById('f-tel').value.trim();
+  if (!nombre || !apellido || !email || !tel) { alert('Por favor completa los campos obligatorios.'); return; }
+  const plan = PLANS.find(x => x.id === state.finance);
+  const enganche = Math.round(CAR.price * CAR.enganche);
+  const monto = CAR.price - enganche;
+  const cuota = plan.rate > 0 ? Math.round(monto * plan.rate / (1 - Math.pow(1 + plan.rate, -state.plazo))) : 0;
+  const rows = document.getElementById('confirm-rows');
+  rows.innerHTML = `<div class="confirm-row"><span class="cr-label">Vehículo</span><span class="cr-val">${CAR.name}</span></div><div class="confirm-row"><span class="cr-label">Color</span><span class="cr-val">${state.color}</span></div><div class="confirm-row"><span class="cr-label">Financiamiento</span><span class="cr-val">${plan.title}</span></div>${cuota > 0 ? `<div class="confirm-row"><span class="cr-label">Plazo</span><span class="cr-val">${state.plazo} meses</span></div>` : ''}<div class="confirm-row"><span class="cr-label">Enganche estimado</span><span class="cr-val">$${enganche.toLocaleString()}</span></div>${cuota > 0 ? `<div class="confirm-row"><span class="cr-label">Cuota mensual</span><span class="cr-val">$${cuota.toLocaleString()}/mes</span></div>` : ''}<div class="confirm-row"><span class="cr-label">Solicitante</span><span class="cr-val">${nombre} ${apellido}</span></div><div class="confirm-row"><span class="cr-label">Contacto</span><span class="cr-val">${email}</span></div>`;
+  document.getElementById('confirm-total-val').textContent = '$' + CAR.price.toLocaleString();
+  goStep(4);
+}
+function submitRequest() {
+  const ref = 'AE-' + Math.random().toString(36).substr(2,6).toUpperCase();
+  document.getElementById('ref-code').textContent = ref;
+  document.querySelector('.steps-header').style.display = 'none';
+  [1,2,3,4].forEach(i => document.getElementById('panel-' + i).classList.remove('active'));
+  document.getElementById('success-panel').style.display = 'block';
+}
+function swapMain(thumb) { const main = document.getElementById('img-main'); const tmp = main.src; main.src = thumb.src; thumb.src = tmp; }
+</script>
+</body>
+</html>

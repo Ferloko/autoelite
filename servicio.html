@@ -26,6 +26,7 @@
       position: relative; z-index: 1;
       max-width: 1120px; width: 100%; margin: 0 auto;
       padding: 0 24px 52px;
+      margin-top: 5%;
     }
     .page-hero-content h1 {
       font-size: clamp(34px, 5vw, 62px);
@@ -284,9 +285,12 @@
 
 <!-- ── PAGE HERO ─────────────────────────────────── -->
 <section class="page-hero" style="margin-top: var(--nav-h);">
-  <div class="page-hero-img"></div>
+  <video class="page-hero-video" autoplay muted loop playsinline>
+    <source src="img/v2.mp4" type="video/mp4">
+  </video>
+  <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
-    <p class="s-kicker" style="opacity:0;animation:up .5s .05s forwards">Centro de servicio</p>
+    <p class="s-kicker" style="opacity:0;animation:up .5s .05s forwards">CENTRO DE SERVICIO</p>
     <h1>Tu auto en manos expertas.</h1>
     <p>Técnicos certificados, repuestos originales y tecnología de diagnóstico de última generación.</p>
     <div class="page-hero-actions">

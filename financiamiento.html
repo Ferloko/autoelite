@@ -16,7 +16,7 @@
     }
     .page-hero-img {
       position: absolute; inset: 0;
-      background: url('https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1800&q=80') center/cover no-repeat;
+      background: url('img/a1.jpeg') center/cover no-repeat;
     }
     .page-hero-img::after {
       content: ''; position: absolute; inset: 0;
@@ -266,15 +266,23 @@
           <div class="dd-col">
             <p class="dd-label">Opciones</p>
             <p class="dd-title">Financia tu auto</p>
-            <a href="#">Crédito directo</a>
-            <a href="#">Leasing</a>
-            <a href="#">Refinanciamiento</a>
+            <a href="#planes">Crédito directo</a>
+            <a href="#planes">Leasing</a>
+            <a href="#planes">Refinanciamiento</a>
+            <a href="#proceso">¿Cómo funciona?</a>
           </div>
           <div class="dd-col">
             <p class="dd-label">Herramientas</p>
-            <a href="#">Calculadora de cuotas</a>
-            <a href="#">Solicitar crédito</a>
-            <a href="#">Requisitos</a>
+            <a href="#calculadora">Calculadora de cuotas</a>
+            <a href="#solicitar">Solicitar crédito</a>
+            <a href="#requisitos">Requisitos</a>
+            <a href="#faq">Preguntas frecuentes</a>
+          </div>
+          <div class="dd-col">
+            <p class="dd-label">Más información</p>
+            <a href="#calculadora">Estimar mi cuota</a>
+            <a href="inventario.html">Ver inventario</a>
+            <a href="#proceso">Proceso de aprobación</a>
           </div>
         </div></div>
       </li>
@@ -358,7 +366,7 @@
 </section>
 
 <!-- ── PLANS ─────────────────────────────────────── -->
-<section class="plans-section">
+<section class="plans-section" id="planes">
   <div class="s-header reveal">
     <p class="s-kicker">Planes disponibles</p>
     <h2>Elige cómo quieres financiar tu auto.</h2>
@@ -460,7 +468,7 @@
 </section>
 
 <!-- ── PROCESS ────────────────────────────────────── -->
-<section class="process-section">
+<section class="process-section" id="proceso">
   <div class="s-header reveal">
     <p class="s-kicker">¿Cómo funciona?</p>
     <h2>Del sofá a las llaves en 4 pasos.</h2>
@@ -490,8 +498,194 @@
   </div>
 </section>
 
+<!-- ── REQUISITOS ─────────────────────────────────── -->
+<section class="faq-section" id="requisitos" style="background: var(--light);">
+  <div class="s-header reveal">
+    <p class="s-kicker">Requisitos</p>
+    <h2>¿Qué necesitas para aplicar?</h2>
+    <p>El proceso es simple. Solo los documentos esenciales, sin papeleo innecesario.</p>
+  </div>
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+
+    <div class="plan-card reveal" style="border:1px solid var(--border);">
+      <div class="plan-icon">
+        <svg viewBox="0 0 44 44" fill="none">
+          <rect x="8" y="4" width="28" height="36" rx="3" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M15 16h14M15 22h14M15 28h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Documentos de identidad</h3>
+      <p>Aplica para personas físicas residentes en el país.</p>
+      <ul class="plan-list">
+        <li>Cédula de identidad vigente</li>
+        <li>Pasaporte (extranjeros residentes)</li>
+        <li>Mayor de 18 años</li>
+      </ul>
+    </div>
+
+    <div class="plan-card reveal" style="border:1px solid var(--border);">
+      <div class="plan-icon">
+        <svg viewBox="0 0 44 44" fill="none">
+          <rect x="6" y="10" width="32" height="24" rx="3" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M14 22h16M22 16v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Comprobante de ingresos</h3>
+      <p>Para verificar tu capacidad de pago mensual.</p>
+      <ul class="plan-list">
+        <li>Últimas 3 nóminas o recibos de pago</li>
+        <li>Declaración de impuestos (autónomos)</li>
+        <li>Estados de cuenta bancarios (3 meses)</li>
+      </ul>
+    </div>
+
+    <div class="plan-card reveal" style="border:1px solid var(--border);">
+      <div class="plan-icon">
+        <svg viewBox="0 0 44 44" fill="none">
+          <path d="M8 20c0-7.732 6.268-14 14-14s14 6.268 14 14c0 8-14 20-14 20S8 28 8 20z" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="22" cy="20" r="4" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+      </div>
+      <h3>Comprobante de domicilio</h3>
+      <p>Documento reciente que acredite tu dirección actual.</p>
+      <ul class="plan-list">
+        <li>Factura de servicios (agua, luz, gas)</li>
+        <li>Estado de cuenta bancario</li>
+        <li>No mayor a 90 días de emisión</li>
+      </ul>
+    </div>
+
+    <div class="plan-card reveal" style="border:1px solid var(--border);">
+      <div class="plan-icon">
+        <svg viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="16" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M22 14v8.5l5.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Enganche inicial</h3>
+      <p>El monto mínimo requerido depende del plan elegido.</p>
+      <ul class="plan-list">
+        <li>Crédito directo: desde 10%</li>
+        <li>Leasing: desde 15%</li>
+        <li>Refinanciamiento: sin enganche</li>
+      </ul>
+    </div>
+
+  </div>
+  <div style="text-align:center;margin-top:40px;" class="reveal">
+    <a href="#solicitar" class="btn-gold">Solicitar crédito ahora</a>
+  </div>
+</section>
+
+<!-- ── SOLICITAR CRÉDITO ──────────────────────────── -->
+<section style="background:var(--white);padding:88px 24px;" id="solicitar">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;" class="solicitar-wrap">
+
+    <!-- Info lateral -->
+    <div class="reveal">
+      <p class="s-kicker">Solicitar crédito</p>
+      <h2 style="font-size:clamp(28px,3.5vw,42px);font-weight:700;letter-spacing:-.025em;color:var(--ink);margin-bottom:16px;line-height:1.1;">Completa tu solicitud.<br>Respondemos en 24 h.</h2>
+      <p style="font-size:15px;color:var(--mid);line-height:1.65;max-width:380px;margin-bottom:28px;">Un asesor revisará tu información y te contactará con las mejores condiciones disponibles para tu perfil.</p>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;align-items:flex-start;gap:14px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z" stroke="var(--accent)" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px;">Sin costo de evaluación</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.6;">Revisar tu solicitud es completamente gratuito y sin compromiso.</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="var(--accent)" stroke-width="1.2"/><path d="M1.5 4.5L8 9l6.5-4.5" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px;">Respuesta en 24 horas</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.6;">Te contactamos por teléfono o correo con las condiciones aprobadas.</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 5L6 12l-3-3" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px;">100% digital</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.6;">Firma desde cualquier dispositivo. No necesitas venir a la agencia para empezar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="reveal">
+      <div style="background:var(--light);border-radius:16px;padding:36px 32px;">
+        <div id="form-success" style="display:none;text-align:center;padding:40px 0;">
+          <div style="font-size:40px;margin-bottom:16px;">✓</div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;">¡Solicitud enviada!</h3>
+          <p style="font-size:14px;color:var(--mid);line-height:1.6;">Un asesor se comunicará contigo en las próximas 24 horas hábiles.</p>
+        </div>
+        <div id="form-body">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div>
+              <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Nombre</label>
+              <input type="text" placeholder="Juan" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;background:var(--white);color:var(--ink);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"/>
+            </div>
+            <div>
+              <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Apellido</label>
+              <input type="text" placeholder="Pérez" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;background:var(--white);color:var(--ink);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"/>
+            </div>
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Correo electrónico</label>
+            <input type="email" placeholder="juan@correo.com" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;background:var(--white);color:var(--ink);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"/>
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Teléfono</label>
+            <input type="tel" placeholder="+1 (809) 000-0000" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;background:var(--white);color:var(--ink);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"/>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div>
+              <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Tipo de plan</label>
+              <select style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;background:var(--white);color:var(--ink);outline:none;appearance:none;transition:border-color .2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+                <option value="">Seleccionar</option>
+                <option>Crédito directo</option>
+                <option>Leasing</option>
+                <option>Refinanciamiento</option>
+              </select>
+            </div>
+            <div>
+              <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Ingreso mensual</label>
+              <select style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;background:var(--white);color:var(--ink);outline:none;appearance:none;transition:border-color .2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+                <option value="">Seleccionar</option>
+                <option>Menos de $1,500</option>
+                <option>$1,500 – $3,000</option>
+                <option>$3,000 – $6,000</option>
+                <option>Más de $6,000</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-bottom:20px;">
+            <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Vehículo de interés <span style="font-weight:400;text-transform:none;letter-spacing:0;">(opcional)</span></label>
+            <input type="text" placeholder="Ej. BMW Serie 5 2025" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;background:var(--white);color:var(--ink);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"/>
+          </div>
+          <button onclick="submitForm()" style="width:100%;padding:13px;border:none;border-radius:6px;background:var(--accent);color:var(--ink);font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:opacity .18s;">Enviar solicitud</button>
+          <p style="font-size:11px;color:var(--mid);text-align:center;margin-top:12px;line-height:1.6;">Al enviar, aceptas nuestros <a href="#" style="color:var(--accent);">términos</a> y <a href="#" style="color:var(--accent);">política de privacidad</a>.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @media (max-width: 760px) {
+    .solicitar-wrap { grid-template-columns: 1fr !important; gap: 32px !important; }
+  }
+</style>
+
 <!-- ── FAQ ───────────────────────────────────────── -->
-<section class="faq-section">
+<section class="faq-section" id="faq">
   <div class="s-header reveal">
     <p class="s-kicker">Preguntas frecuentes</p>
     <h2>Todo lo que necesitas saber.</h2>
@@ -572,6 +766,11 @@
 
 <script src="main.js"></script>
 <script>
+  function submitForm() {
+    document.getElementById('form-body').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+
   function calcUpdate() {
     const price = parseInt(document.getElementById('price').value);
     const downPct = parseInt(document.getElementById('down').value);
