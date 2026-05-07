@@ -27,9 +27,9 @@
 
   const STATIC_DETAIL_CARS = {
     "page-detalle-bmw": {
-      name: "BMW Serie 5",
-      price: 58900,
-      mensual: 890,
+      name: "BMW M3",
+      price: 94582,
+      mensual: 1429,
       enganche: 0.15,
       colors: [
         { name: "Negro Zafiro", hex: "#1a1a1a" },
@@ -41,8 +41,8 @@
     },
     "page-detalle-db12": {
       name: "Aston Martin DB12",
-      price: 64500,
-      mensual: 975,
+      price: 269888,
+      mensual: 4078,
       enganche: 0.15,
       colors: [
         { name: "Negro Obsidiana", hex: "#111111" },
@@ -52,9 +52,9 @@
       ],
     },
     "page-detalle-porsche": {
-      name: "Porsche Macan S",
-      price: 71200,
-      mensual: 1075,
+      name: "Porsche 911 Carrera S",
+      price: 224100,
+      mensual: 3386,
       enganche: 0.2,
       colors: [
         { name: "Negro Volcanico", hex: "#111111" },
@@ -63,9 +63,9 @@
       ],
     },
     "page-detalle-huracan": {
-      name: "Porsche Macan S",
-      price: 71200,
-      mensual: 1075,
+      name: "Lamborghini Huracan EVO",
+      price: 206295,
+      mensual: 3117,
       enganche: 0.2,
       colors: [
         { name: "Negro Volcanico", hex: "#111111" },
@@ -74,9 +74,9 @@
       ],
     },
     "page-detalle-gt": {
-      name: "Porsche Macan S",
-      price: 71200,
-      mensual: 1075,
+      name: "Aston Martin DB9",
+      price: 337480,
+      mensual: 5099,
       enganche: 0.2,
       colors: [
         { name: "Negro Volcanico", hex: "#111111" },
@@ -85,9 +85,9 @@
       ],
     },
     "page-detalle-mustang": {
-      name: "Porsche Macan S",
-      price: 71200,
-      mensual: 1075,
+      name: "Ford Mustang GT",
+      price: 69635,
+      mensual: 1052,
       enganche: 0.2,
       colors: [
         { name: "Negro Volcanico", hex: "#111111" },
@@ -96,9 +96,9 @@
       ],
     },
     "page-detalle-gtr": {
-      name: "Porsche Macan S",
-      price: 71200,
-      mensual: 1075,
+      name: "Nissan GT-R R35",
+      price: 121090,
+      mensual: 1830,
       enganche: 0.2,
       colors: [
         { name: "Negro Volcanico", hex: "#111111" },
@@ -107,9 +107,9 @@
       ],
     },
     "page-detalle-mclaren": {
-      name: "Porsche Macan S",
-      price: 71200,
-      mensual: 1075,
+      name: "McLaren 720s",
+      price: 333881,
+      mensual: 5045,
       enganche: 0.2,
       colors: [
         { name: "Negro Volcanico", hex: "#111111" },
@@ -118,9 +118,9 @@
       ],
     },
     "page-detalle-grant": {
-      name: "Porsche Macan S",
-      price: 71200,
-      mensual: 1075,
+      name: "Maserati Gran Turismo",
+      price: 264876,
+      mensual: 4002,
       enganche: 0.2,
       colors: [
         { name: "Negro Volcanico", hex: "#111111" },
@@ -129,9 +129,9 @@
       ],
     },
     "page-detalle-c8": {
-      name: "Porsche Macan S",
-      price: 71200,
-      mensual: 1075,
+      name: "Corvette C8",
+      price: 142900,
+      mensual: 2159,
       enganche: 0.2,
       colors: [
         { name: "Negro Volcanico", hex: "#111111" },
