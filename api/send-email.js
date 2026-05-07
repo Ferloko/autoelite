@@ -86,6 +86,13 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ ok: true, provider: "resend", messageId });
     }
 
+    if (resendApiKey && !resendFrom) {
+      return res.status(500).json({
+        ok: false,
+        error: "RESEND_API_KEY is set but RESEND_FROM is missing.",
+      });
+    }
+
     if (brevoApiKey && brevoSenderEmail) {
       const messageId = await sendWithBrevo({
         apiKey: brevoApiKey,

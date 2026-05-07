@@ -130,7 +130,7 @@
     <p>Aprobación en 24 horas. Tasas competitivas. Sin complicaciones.</p>
     <div class="page-hero-actions">
       <a href="#calculadora" class="btn-gold">Calcular cuota</a>
-      <a href="#" class="btn-ghost">Solicitar crédito</a>
+      <a href="#" class="btn-ghost" onclick="openModal('modalSolicitudCredito');return false;">Solicitar crédito</a>
     </div>
   </div>
 </section>
@@ -169,7 +169,7 @@
         <li>Aprobación en 24 horas</li>
         <li>Sin penalidad por pago anticipado</li>
       </ul>
-      <a href="#" class="plan-cta">Solicitar crédito</a>
+      <a href="#" class="plan-cta" onclick="openModal('modalSolicitudCredito');return false;">Solicitar crédito</a>
     </div>
 
     <div class="plan-card featured-plan reveal">
@@ -242,7 +242,7 @@
         <div class="calc-result-amount" id="monthly">$923<span>/mes</span></div>
         <div class="calc-result-sub" id="totalSub">Total financiado: $40,000 · Tasa: 6.9% anual</div>
       </div>
-      <a href="#" class="calc-apply">Solicitar este crédito →</a>
+      <a href="#" class="calc-apply" onclick="openModal('modalSolicitudCredito');return false;">Solicitar este crédito →</a>
     </div>
   </div>
 </section>
@@ -353,7 +353,7 @@
 
   </div>
   <div style="text-align:center;margin-top:40px;" class="reveal">
-    <a href="#solicitar" class="btn-gold">Solicitar crédito ahora</a>
+    <a href="#" class="btn-gold" onclick="openModal('modalSolicitudCredito');return false;">Solicitar crédito ahora</a>
   </div>
 </section>
 
@@ -493,10 +493,57 @@
   <h2 class="reveal">¿Listo para arrancar?</h2>
   <p class="reveal">Habla con un asesor financiero hoy. Sin presiones, a tu ritmo.</p>
   <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-    <a href="#" class="btn-gold">Solicitar crédito</a>
+    <a href="#" class="btn-gold" onclick="openModal('modalSolicitudCredito');return false;">Solicitar crédito</a>
     <a href="inventario.html" class="btn-ghost">Ver inventario</a>
   </div>
 </section>
+
+<!-- Modal: Solicitar crédito -->
+<div class="modal-overlay" id="modalSolicitudCredito">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalSolicitudCredito')">×</button>
+    <div id="creditoModalForm">
+      <h3>Solicitar crédito</h3>
+      <p>Completa tus datos y un asesor financiero te contactará con una propuesta personalizada.</p>
+      <div class="m-2col">
+        <div class="m-field"><label>Nombre</label><input type="text" placeholder="Juan"/></div>
+        <div class="m-field"><label>Apellido</label><input type="text" placeholder="Pérez"/></div>
+      </div>
+      <div class="m-2col">
+        <div class="m-field"><label>Teléfono</label><input type="tel" placeholder="+1 (809) 000-0000"/></div>
+        <div class="m-field"><label>Correo electrónico</label><input type="email" placeholder="juan@correo.com"/></div>
+      </div>
+      <div class="m-2col">
+        <div class="m-field"><label>Tipo de plan</label>
+          <select>
+            <option value="">Seleccionar</option>
+            <option>Crédito directo</option>
+            <option>Leasing</option>
+            <option>Refinanciamiento</option>
+          </select>
+        </div>
+        <div class="m-field"><label>Ingreso mensual</label>
+          <select>
+            <option value="">Seleccionar</option>
+            <option>Menos de $1,500</option>
+            <option>$1,500 – $3,000</option>
+            <option>$3,000 – $6,000</option>
+            <option>Más de $6,000</option>
+          </select>
+        </div>
+      </div>
+      <div class="m-field"><label>Vehículo de interés <span style="font-weight:400;text-transform:none;letter-spacing:0;">(opcional)</span></label>
+        <input type="text" placeholder="Ej. BMW Serie 5 2025"/>
+      </div>
+      <button class="m-submit" onclick="submitModal('creditoModalForm','creditoModalSuccess')">Enviar solicitud</button>
+    </div>
+    <div class="m-success" id="creditoModalSuccess">
+      <div class="m-check"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5 9-9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h4>¡Solicitud enviada!</h4>
+      <p>Un asesor te contactará en breve con las mejores condiciones para tu perfil.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ── FOOTER ─────────────────────────────────────── -->
 <footer>

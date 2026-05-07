@@ -570,39 +570,39 @@
     body.page-inventario .promo-content .s-kicker { color: var(--accent); }
     body.page-inventario .promo-content h2 { font-size: clamp(26px, 4vw, 48px); font-weight: 700; letter-spacing: -.03em; color: #fff; max-width: 580px; margin: 0 auto 14px; }
     body.page-inventario .promo-content p { font-size: 15px; color: rgba(255,255,255,.6); max-width: 380px; margin: 0 auto 24px; line-height: 1.6; }
-    :is(body.page-inventario, body.page-index) .modal-overlay {
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .modal-overlay {
       display: none; position: fixed; inset: 0; z-index: 999;
       background: rgba(0,0,0,.55);
       backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
       align-items: center; justify-content: center; padding: 24px;
     }
-    :is(body.page-inventario, body.page-index) .modal-overlay.open { display: flex; }
-    :is(body.page-inventario, body.page-index) .modal-box {
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .modal-overlay.open { display: flex; }
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .modal-box {
       background: var(--white); border-radius: 16px;
       padding: 40px 36px; width: 100%; max-width: 480px;
       position: relative; max-height: 90vh; overflow-y: auto;
     }
-    :is(body.page-inventario, body.page-index) .modal-close {
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .modal-close {
       position: absolute; top: 16px; right: 18px;
       background: none; border: none; font-size: 22px; cursor: pointer;
       color: var(--mid); line-height: 1;
     }
-    :is(body.page-inventario, body.page-index) .modal-box h3 {
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .modal-box h3 {
       font-size: 22px; font-weight: 700; letter-spacing: -.02em;
       color: var(--ink); margin-bottom: 6px;
     }
-    :is(body.page-inventario, body.page-index) .modal-box > p {
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .modal-box > p {
       font-size: 14px; color: var(--mid); line-height: 1.6; margin-bottom: 24px;
     }
-    :is(body.page-inventario, body.page-index) .m-field { margin-bottom: 14px; }
-    :is(body.page-inventario, body.page-index) .m-field label {
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-field { margin-bottom: 14px; }
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-field label {
       display: block; font-size: 11px; font-weight: 700;
       letter-spacing: .05em; text-transform: uppercase;
       color: var(--mid); margin-bottom: 6px;
     }
-    :is(body.page-inventario, body.page-index) .m-field input,
-    :is(body.page-inventario, body.page-index) .m-field select,
-    :is(body.page-inventario, body.page-index) .m-field textarea {
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-field input,
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-field select,
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-field textarea {
       width: 100%; padding: 10px 12px;
       border: 1px solid var(--border); border-radius: 6px;
       font-size: 13px; font-family: inherit;
@@ -610,13 +610,13 @@
       outline: none; transition: border-color .2s;
       resize: vertical;
     }
-    :is(body.page-inventario, body.page-index) .m-field input:focus,
-    :is(body.page-inventario, body.page-index) .m-field select:focus,
-    :is(body.page-inventario, body.page-index) .m-field textarea:focus {
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-field input:focus,
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-field select:focus,
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-field textarea:focus {
       border-color: var(--accent);
     }
-    :is(body.page-inventario, body.page-index) .m-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    :is(body.page-inventario, body.page-index) .m-submit {
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-submit {
       width: 100%; margin-top: 8px; padding: 12px;
       border: none; border-radius: 6px;
       background: var(--accent); color: var(--ink);
@@ -624,15 +624,15 @@
       text-transform: uppercase; cursor: pointer;
       font-family: inherit; transition: opacity .18s;
     }
-    :is(body.page-inventario, body.page-index) .m-submit:hover { opacity: .88; }
-    :is(body.page-inventario, body.page-index) .m-success { display: none; text-align: center; padding: 32px 0; }
-    :is(body.page-inventario, body.page-index) .m-success .m-check {
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-submit:hover { opacity: .88; }
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-success { display: none; text-align: center; padding: 32px 0; }
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-success .m-check {
       width: 52px; height: 52px; border-radius: 50%;
       background: var(--light); display: flex; align-items: center;
       justify-content: center; margin: 0 auto 16px;
     }
-    :is(body.page-inventario, body.page-index) .m-success h4 { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
-    :is(body.page-inventario, body.page-index) .m-success p { font-size: 14px; color: var(--mid); line-height: 1.6; }
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-success h4 { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+    :is(body.page-inventario, body.page-index, body.page-financiamiento) .m-success p { font-size: 14px; color: var(--mid); line-height: 1.6; }
     @media (max-width: 700px) {
       body.page-inventario .car-card.featured { grid-column: span 1; display: block; }
       body.page-inventario .car-card.featured img { aspect-ratio: 16/10; height: auto; }
