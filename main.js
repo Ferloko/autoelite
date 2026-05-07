@@ -862,13 +862,21 @@
         }),
       });
 
+      let payload = null;
+      try {
+        payload = await response.json();
+      } catch (_err) {
+        payload = null;
+      }
+
       if (!response.ok) {
-        throw new Error("No se pudo enviar el correo.");
+        const reason = payload?.error || "No se pudo enviar el correo.";
+        throw new Error(reason);
       }
 
       return true;
     } catch (error) {
-      alert("No se pudo enviar la solicitud. Verifica la configuracion de Brevo en Vercel.");
+      alert(`No se pudo enviar la solicitud: ${error.message}`);
       return false;
     }
   }

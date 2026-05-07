@@ -1,3 +1,11 @@
+function extractBrevoErrorMessage(data) {
+  if (!data) return "Brevo rejected the request.";
+  if (typeof data === "string") return data;
+  if (data.message) return data.message;
+  if (Array.isArray(data) && data[0]?.message) return data[0].message;
+  return JSON.stringify(data);
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ ok: false, error: "Method not allowed" });
@@ -42,7 +50,11 @@ module.exports = async function handler(req, res) {
     const data = await brevoResponse.json();
 
     if (!brevoResponse.ok) {
-      return res.status(400).json({ ok: false, error: data });
+      return res.status(400).json({
+        ok: false,
+        error: extractBrevoErrorMessage(data),
+        providerError: data,
+      });
     }
 
     return res.status(200).json({ ok: true, messageId: data.messageId || null });
