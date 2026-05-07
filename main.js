@@ -4,6 +4,8 @@
 
   const nav = document.getElementById('nav');
   const hero = document.querySelector('.hero');
+  const CONTACT_EMAIL = "ferlokgm@gmail.com";
+  const EMAIL_API_ENDPOINT = "/api/send-email";
 
   if (hero && nav) {
     new IntersectionObserver(([entry]) => {
@@ -596,8 +598,21 @@
     window.goStep(4);
   };
 
-  window.submitRequest = () => {
+  window.submitRequest = async () => {
     const ref = "AE-" + Math.random().toString(36).slice(2, 8).toUpperCase();
+    const rows = Array.from(document.querySelectorAll("#confirm-rows .confirm-row")).map((row) => {
+      const label = normalizeLabel(row.querySelector(".cr-label")?.textContent || "");
+      const value = normalizeLabel(row.querySelector(".cr-val")?.textContent || "");
+      return { label, value };
+    }).filter((item) => item.label && item.value);
+
+    const sent = await sendMail(
+      `Reserva de vehiculo ${ref} - Auto Elite`,
+      "Quiero enviar esta solicitud de reserva:",
+      [{ label: "Referencia", value: ref }, ...rows]
+    );
+    if (!sent) return;
+
     const refCode = document.getElementById("ref-code");
     if (refCode) refCode.textContent = ref;
     const stepsHeader = document.querySelector(".steps-header");
@@ -785,14 +800,96 @@
     document.body.style.overflow = "";
   };
 
-  window.submitModal = (formId, successId) => {
+  function normalizeLabel(text) {
+    return (text || "").replace(/\s+/g, " ").trim().replace(/\s*\(opcional\)\s*$/i, "");
+  }
+
+  function getFieldLabel(field, idx) {
+    const row = field.closest(".m-field, .form-row");
+    const label = row?.querySelector("label");
+    if (label) return normalizeLabel(label.textContent);
+    return normalizeLabel(field.getAttribute("aria-label") || field.getAttribute("placeholder") || field.name || field.id || `Campo ${idx + 1}`);
+  }
+
+  function getFieldValue(field) {
+    if (!field) return "";
+    if (field.tagName === "SELECT") {
+      const selected = field.options[field.selectedIndex];
+      return normalizeLabel(selected?.textContent || "");
+    }
+    return (field.value || "").trim();
+  }
+
+  function collectFields(container) {
+    if (!container) return [];
+    const fields = Array.from(container.querySelectorAll("input, select, textarea"));
+    return fields
+      .filter((field) => {
+        const type = (field.getAttribute("type") || "").toLowerCase();
+        return !["button", "submit", "hidden"].includes(type);
+      })
+      .map((field, idx) => ({
+        label: getFieldLabel(field, idx),
+        value: getFieldValue(field),
+      }))
+      .filter((item) => item.value);
+  }
+
+  async function sendMail(subject, intro, fields) {
+    if (!fields.length) {
+      alert("Por favor completa al menos un campo antes de enviar.");
+      return false;
+    }
+
+    const bodyText = [
+      "Hola Auto Elite,",
+      "",
+      intro,
+      "",
+      ...fields.map((item) => `${item.label}: ${item.value}`),
+      "",
+      "Enviado desde el sitio web.",
+    ].join("\n");
+
+    try {
+      const response = await fetch(EMAIL_API_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: CONTACT_EMAIL,
+          subject,
+          text: bodyText,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("No se pudo enviar el correo.");
+      }
+
+      return true;
+    } catch (error) {
+      alert("No se pudo enviar la solicitud. Verifica la configuracion de Brevo en Vercel.");
+      return false;
+    }
+  }
+
+  window.submitModal = async (formId, successId) => {
     const form = document.getElementById(formId);
     const success = document.getElementById(successId);
-    if (form) form.style.display = "none";
-    if (success) success.style.display = "block";
+    if (!form || !success) return;
+    const title = form.querySelector("h3")?.textContent?.trim() || "Solicitud";
+    const fields = collectFields(form);
+    const sent = await sendMail(
+      `${title} - Auto Elite`,
+      `Quiero realizar esta solicitud: ${title}`,
+      fields
+    );
+    if (!sent) return;
+    form.style.display = "none";
+    success.style.display = "block";
   };
 
-  window.submitTestDriveForm = () => {
+  window.submitTestDriveForm = async () => {
     if (!body.classList.contains("page-index")) return;
     const nombre = (document.getElementById("tdNombre")?.value || "").trim();
     const apellido = (document.getElementById("tdApellido")?.value || "").trim();
@@ -824,8 +921,24 @@
       "Gracias.",
     ].join("\n");
 
-    window.location.href = `mailto:ferlokgm@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
-    window.submitModal("testDriveForm", "testDriveSuccess");
+    const sent = await sendMail(
+      subject,
+      "Quiero agendar una prueba de manejo con estos datos:",
+      [
+        { label: "Nombre", value: `${nombre} ${apellido}` },
+        { label: "Telefono", value: telefono },
+        { label: "Correo", value: correo },
+        { label: "Vehiculo de interes", value: vehiculo },
+        { label: "Fecha preferida", value: fecha },
+        { label: "Hora preferida", value: hora },
+        { label: "Mensaje adicional", value: mensaje || "N/A" },
+      ]
+    );
+    if (!sent) return;
+    const form = document.getElementById("testDriveForm");
+    const success = document.getElementById("testDriveSuccess");
+    if (form) form.style.display = "none";
+    if (success) success.style.display = "block";
   };
 
   function initSharedModalHandlers() {
@@ -849,29 +962,45 @@
     renderInventoryPage();
   }
 
-  function handleServiceSubmit(event) {
+  async function handleServiceSubmit(event) {
+    const form = document.querySelector(".booking-form");
     const button = event?.target || document.querySelector(".form-submit");
-    if (!button) return;
+    if (!button || !form) return;
     if (event?.preventDefault) event.preventDefault();
+    const fields = collectFields(form);
+    const sent = await sendMail(
+      "Agendar cita de servicio - Auto Elite",
+      "Quiero agendar una cita de servicio con estos datos:",
+      fields
+    );
+    if (!sent) return;
     button.textContent = "¡Cita confirmada! ✓";
     button.style.background = "var(--accent)";
     button.disabled = true;
   }
 
-  function handleFinanceSubmit() {
+  async function handleFinanceSubmit() {
     const formBody = document.getElementById("form-body");
     const formSuccess = document.getElementById("form-success");
+    if (!formBody || !formSuccess) return;
+    const fields = collectFields(formBody);
+    const sent = await sendMail(
+      "Solicitud de financiamiento - Auto Elite",
+      "Quiero solicitar financiamiento con los siguientes datos:",
+      fields
+    );
+    if (!sent) return;
     if (formBody) formBody.style.display = "none";
     if (formSuccess) formSuccess.style.display = "block";
   }
 
-  window.submitForm = (arg) => {
+  window.submitForm = async (arg) => {
     if (body.classList.contains("page-servicio")) {
-      handleServiceSubmit(arg);
+      await handleServiceSubmit(arg);
       return;
     }
     if (body.classList.contains("page-financiamiento")) {
-      handleFinanceSubmit();
+      await handleFinanceSubmit();
     }
   };
 
