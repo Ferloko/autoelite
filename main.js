@@ -4,7 +4,7 @@
 
   const nav = document.getElementById('nav');
   const hero = document.querySelector('.hero');
-  const CONTACT_EMAIL = "ferlokgm@gmail.com";
+  const CONTACT_EMAIL = "eliana.marit2009@gmail.com";
   const EMAIL_API_ENDPOINT = "/api/send-email";
 
   if (hero && nav) {
