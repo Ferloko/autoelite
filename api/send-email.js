@@ -7,7 +7,7 @@ function extractErrorMessage(data, fallback) {
   return JSON.stringify(data);
 }
 
-async function sendWithResend({ apiKey, from, toEmail, subject, text }) {
+async function sendWithResend({ apiKey, from, toEmail, subject, text, html }) {
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -19,6 +19,7 @@ async function sendWithResend({ apiKey, from, toEmail, subject, text }) {
       to: [toEmail],
       subject,
       text,
+      html,
     }),
   });
 
@@ -30,7 +31,7 @@ async function sendWithResend({ apiKey, from, toEmail, subject, text }) {
   return data.id || null;
 }
 
-async function sendWithBrevo({ apiKey, senderEmail, senderName, toEmail, subject, text }) {
+async function sendWithBrevo({ apiKey, senderEmail, senderName, toEmail, subject, text, html }) {
   const response = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: {
@@ -43,6 +44,7 @@ async function sendWithBrevo({ apiKey, senderEmail, senderName, toEmail, subject
       to: [{ email: toEmail }],
       subject,
       textContent: text,
+      htmlContent: html,
     }),
   });
 
@@ -64,6 +66,7 @@ module.exports = async function handler(req, res) {
     const toEmail = payload.to;
     const subject = payload.subject;
     const text = payload.text;
+    const html = payload.html;
 
     if (!toEmail || !subject || !text) {
       return res.status(400).json({ ok: false, error: "Missing to, subject or text" });
@@ -82,6 +85,7 @@ module.exports = async function handler(req, res) {
         toEmail,
         subject,
         text,
+        html: html || undefined,
       });
       return res.status(200).json({ ok: true, provider: "resend", messageId });
     }
@@ -101,6 +105,7 @@ module.exports = async function handler(req, res) {
         toEmail,
         subject,
         text,
+        html: html || undefined,
       });
       return res.status(200).json({ ok: true, provider: "brevo", messageId });
     }

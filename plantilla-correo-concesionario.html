@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plantilla de Correo - Auto Elite</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0c0c0e;
+      font-family: "Manrope", Arial, Helvetica, sans-serif;
+      color: #1a1a1a;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    .wrapper {
+      width: 100%;
+      background: radial-gradient(circle at top, #1a1a20 0%, #0c0c0e 65%);
+      padding: 34px 12px;
+    }
+    .container {
+      width: 100%;
+      max-width: 640px;
+      background: #ffffff;
+      border: 1px solid #232327;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.35);
+    }
+    .header {
+      background: linear-gradient(120deg, #0f0f0f 0%, #19191d 100%);
+      padding: 24px 28px 30px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .brand {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+    .subbrand {
+      margin: 8px 0 0;
+      font-size: 11px;
+      color: #c8a96e;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      margin: 20px 0 0;
+      font-size: 26px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      max-width: 420px;
+    }
+    .hero-sub {
+      margin: 10px 0 0;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.62);
+      max-width: 460px;
+      line-height: 1.6;
+    }
+    .content {
+      padding: 30px 28px 22px;
+      line-height: 1.65;
+    }
+    .greeting {
+      margin: 0 0 16px;
+      font-size: 15px;
+    }
+    .title {
+      margin: 0 0 14px;
+      font-size: 23px;
+      line-height: 1.25;
+      color: #1a1a1a;
+      letter-spacing: -0.02em;
+    }
+    .text {
+      margin: 0 0 14px;
+      font-size: 14px;
+      color: #3f3f46;
+    }
+    .detail-box {
+      margin: 22px 0;
+      background: linear-gradient(180deg, #fcfcfd 0%, #f6f6f8 100%);
+      border: 1px solid #ececf1;
+      border-left: 4px solid #c8a96e;
+      border-radius: 10px;
+      padding: 16px 16px;
+    }
+    .detail-title {
+      margin: 0 0 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #6b6b6b;
+    }
+    .detail-row {
+      margin: 0;
+      font-size: 14px;
+      color: #1a1a1a;
+    }
+    .detail-row + .detail-row {
+      margin-top: 6px;
+    }
+    .cta-wrap {
+      padding: 8px 0 10px;
+      text-align: left;
+    }
+    .cta {
+      display: inline-block;
+      background: linear-gradient(135deg, #d6b77c 0%, #c8a96e 100%);
+      color: #1a1a1a !important;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      border-radius: 7px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .signature {
+      margin: 18px 0 0;
+      font-size: 14px;
+      color: #3f3f46;
+    }
+    .footer {
+      border-top: 1px solid #ececf1;
+      padding: 16px 28px 22px;
+      background: #fafafc;
+    }
+    .footer-text {
+      margin: 0;
+      font-size: 11px;
+      line-height: 1.6;
+      color: #7a7a83;
+    }
+    .small-sep {
+      color: #b2b2ba;
+      padding: 0 6px;
+    }
+  </style>
+</head>
+<body>
+  <table role="presentation" width="100%" class="wrapper">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="640" class="container">
+          <tr>
+            <td class="header">
+              <p class="brand">Auto Elite</p>
+              <p class="subbrand">Concesionario Premium</p>
+              <h2 class="hero-title">Confirmacion de solicitud recibida</h2>
+              <p class="hero-sub">Gracias por elegir una experiencia premium. Estamos preparando una propuesta personalizada para usted.</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="content">
+              <p class="greeting">Estimado/a [CLIENTE_NOMBRE],</p>
+              <h1 class="title">Hemos recibido su solicitud correctamente</h1>
+              <p class="text">
+                Gracias por su interes en Auto Elite. Hemos recibido correctamente su solicitud y uno de nuestros asesores especializados se pondra en contacto con usted en las proximas 24 horas habiles.
+              </p>
+              <p class="text">
+                Nuestro objetivo es ofrecerle una atencion personalizada y una propuesta que se ajuste a sus necesidades.
+              </p>
+
+              <div class="detail-box">
+                <p class="detail-title">Resumen de solicitud</p>
+                <p class="detail-row"><strong>Referencia:</strong> [REFERENCIA]</p>
+                <p class="detail-row"><strong>Tipo de solicitud:</strong> [TIPO_SOLICITUD]</p>
+                <p class="detail-row"><strong>Vehiculo de interes:</strong> [VEHICULO]</p>
+                <p class="detail-row"><strong>Fecha de registro:</strong> [FECHA]</p>
+              </div>
+
+              <div class="cta-wrap">
+                <a href="[URL_SITIO]" class="cta">Ver Inventario</a>
+              </div>
+
+              <p class="signature">
+                Atentamente,<br />
+                <strong>Equipo Comercial Auto Elite</strong>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="footer">
+              <p class="footer-text">
+                Auto Elite <span class="small-sep">|</span> +1 (809) 000-0000 <span class="small-sep">|</span> info@autoelite.com<br />
+                Av. Principal 100, Santo Domingo<br />
+                Este correo es informativo. Si usted no realizo esta solicitud, puede ignorarlo.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+
