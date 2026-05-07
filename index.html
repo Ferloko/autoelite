@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
+<body class="page-index">
 
 <!-- ── NAV ─────────────────────────────────────── -->
 <nav id="nav">
@@ -125,7 +125,7 @@
     <p class="hero-sub">Vehículos nuevos y certificados de las mejores marcas. Financiamiento a tu medida.</p>
     <div class="hero-actions">
       <a href="inventario.html" class="btn-gold">Ver inventario</a>
-      <a href="#" class="btn-ghost">Agendar prueba de manejo</a>
+      <a href="#" class="btn-ghost" onclick="openModal('modalTestDrive');return false;">Agendar prueba de manejo</a>
     </div>
   </div>
 </section>
@@ -444,6 +444,46 @@
     <a href="#" class="btn-ghost">Agendar cita</a>
   </div>
 </section>
+
+<!-- Modal: Agendar prueba de manejo -->
+<div class="modal-overlay" id="modalTestDrive">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalTestDrive')">×</button>
+    <div id="testDriveForm">
+      <h3>Agendar prueba de manejo</h3>
+      <p>Completa tus datos y abriremos tu correo con la solicitud lista para enviar al equipo de Auto Elite.</p>
+      <div class="m-2col">
+        <div class="m-field"><label>Nombre</label><input type="text" id="tdNombre" placeholder="Juan"/></div>
+        <div class="m-field"><label>Apellido</label><input type="text" id="tdApellido" placeholder="Pérez"/></div>
+      </div>
+      <div class="m-2col">
+        <div class="m-field"><label>Teléfono</label><input type="tel" id="tdTelefono" placeholder="+1 (809) 000-0000"/></div>
+        <div class="m-field"><label>Correo electrónico</label><input type="email" id="tdCorreo" placeholder="juan@correo.com"/></div>
+      </div>
+      <div class="m-field"><label>Vehículo de interés</label><input type="text" id="tdVehiculo" placeholder="Ej. BMW M3 Competition"/></div>
+      <div class="m-2col">
+        <div class="m-field"><label>Fecha preferida</label><input type="date" id="tdFecha"/></div>
+        <div class="m-field"><label>Hora preferida</label>
+          <select id="tdHora">
+            <option value="">Seleccionar</option>
+            <option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+            <option>12:00 PM</option><option>2:00 PM</option><option>3:00 PM</option>
+            <option>4:00 PM</option><option>5:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="m-field"><label>Mensaje adicional <span style="font-weight:400;text-transform:none;letter-spacing:0;">(opcional)</span></label>
+        <textarea rows="3" id="tdMensaje" placeholder="Ej. Quiero comparar este modelo con uno similar..."></textarea>
+      </div>
+      <button class="m-submit" onclick="submitTestDriveForm()">Enviar solicitud</button>
+    </div>
+    <div class="m-success" id="testDriveSuccess">
+      <div class="m-check"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5 9-9" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h4>¡Solicitud preparada!</h4>
+      <p>Se abrió tu cliente de correo con la información de la prueba de manejo lista para enviar.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ── FOOTER ─────────────────────────────────────── -->
 <footer>
