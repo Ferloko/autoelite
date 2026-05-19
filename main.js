@@ -4,8 +4,24 @@
 
   const nav = document.getElementById('nav');
   const hero = document.querySelector('.hero');
-  const CONTACT_EMAIL = "eliana.marit2009@gmail.com";
   const EMAIL_API_ENDPOINT = "/api/send-email";
+
+  function initVercelAnalytics() {
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") return;
+    if (document.querySelector('script[data-vercel-analytics="true"]')) return;
+
+    window.va = window.va || function () {
+      (window.vaq = window.vaq || []).push(arguments);
+    };
+
+    const script = document.createElement("script");
+    script.defer = true;
+    script.src = "/_vercel/insights/script.js";
+    script.setAttribute("data-vercel-analytics", "true");
+    document.head.appendChild(script);
+  }
+
+  initVercelAnalytics();
 
   if (hero && nav) {
     new IntersectionObserver(([entry]) => {
@@ -24,6 +40,9 @@
     { id: "leasing", title: "Leasing", desc: "Cuotas mensuales, opcion de compra al final", rate: 0.0075 },
     { id: "contado", title: "Contado", desc: "Pago unico sin intereses", rate: 0 },
   ];
+
+
+  
 
   const STATIC_DETAIL_CARS = {
     "page-detalle-bmw": {
@@ -804,15 +823,6 @@
     return (text || "").replace(/\s+/g, " ").trim().replace(/\s*\(opcional\)\s*$/i, "");
   }
 
-  function escapeHtml(value) {
-    return String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
-  }
-
   function getFieldLabel(field, idx) {
     const row = field.closest(".m-field, .form-row");
     const label = row?.querySelector("label");
@@ -844,82 +854,20 @@
       .filter((item) => item.value);
   }
 
-  function buildEmailHtml(intro, fields) {
-    const rows = fields
-      .map((item) => `<p style="margin:0 0 8px;font-size:14px;line-height:1.6;color:#1a1a1a;"><strong>${escapeHtml(item.label)}:</strong> ${escapeHtml(item.value)}</p>`)
-      .join("");
-
-    return `
-      <!DOCTYPE html>
-      <html lang="es">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </head>
-      <body style="margin:0;padding:0;background:#0c0c0e;font-family:Arial,Helvetica,sans-serif;">
-        <table role="presentation" width="100%" style="border-collapse:collapse;background:radial-gradient(circle at top,#1a1a20 0%,#0c0c0e 65%);padding:30px 12px;">
-          <tr>
-            <td align="center">
-              <table role="presentation" width="640" style="border-collapse:collapse;max-width:640px;width:100%;background:#ffffff;border:1px solid #232327;border-radius:14px;overflow:hidden;">
-                <tr>
-                  <td style="background:linear-gradient(120deg,#0f0f0f 0%,#19191d 100%);padding:24px 28px 30px;border-bottom:1px solid rgba(255,255,255,.08);">
-                    <p style="margin:0;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#ffffff;">Auto Elite</p>
-                    <p style="margin:8px 0 0;font-size:11px;color:#c8a96e;letter-spacing:.08em;text-transform:uppercase;">Concesionario Premium</p>
-                    <h2 style="margin:20px 0 0;font-size:26px;line-height:1.2;letter-spacing:-.02em;color:#ffffff;max-width:420px;">Confirmacion de solicitud recibida</h2>
-                    <p style="margin:10px 0 0;font-size:13px;color:rgba(255,255,255,.62);max-width:460px;line-height:1.6;">Gracias por elegir una experiencia premium. Estamos preparando una propuesta personalizada para usted.</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="padding:30px 28px 22px;line-height:1.65;">
-                    <p style="margin:0 0 16px;font-size:15px;color:#1a1a1a;">Estimado/a cliente,</p>
-                    <p style="margin:0 0 14px;font-size:14px;color:#3f3f46;">${escapeHtml(intro)}</p>
-                    <div style="margin:22px 0;background:linear-gradient(180deg,#fcfcfd 0%,#f6f6f8 100%);border:1px solid #ececf1;border-left:4px solid #c8a96e;border-radius:10px;padding:16px;">
-                      <p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b6b6b;">Resumen de solicitud</p>
-                      ${rows}
-                    </div>
-                    <p style="margin:18px 0 0;font-size:14px;color:#3f3f46;">Atentamente,<br /><strong>Equipo Comercial Auto Elite</strong></p>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="border-top:1px solid #ececf1;padding:16px 28px 22px;background:#fafafc;">
-                    <p style="margin:0;font-size:11px;line-height:1.6;color:#7a7a83;">Auto Elite | +1 (809) 000-0000 | info@autoelite.com<br />Av. Principal 100, Santo Domingo</p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </body>
-      </html>
-    `;
-  }
-
   async function sendMail(subject, intro, fields) {
     if (!fields.length) {
       alert("Por favor completa al menos un campo antes de enviar.");
       return false;
     }
 
-    const bodyText = [
-      "Hola Auto Elite,",
-      "",
-      intro,
-      "",
-      ...fields.map((item) => `${item.label}: ${item.value}`),
-      "",
-      "Enviado desde el sitio web.",
-    ].join("\n");
-    const htmlContent = buildEmailHtml(intro, fields);
-
     try {
       const response = await fetch(EMAIL_API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          to: CONTACT_EMAIL,
           subject,
-          text: bodyText,
-          html: htmlContent,
+          intro,
+          fields,
         }),
       });
 
