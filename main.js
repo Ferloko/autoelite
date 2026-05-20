@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
   const body = document.body;
   if (!body) return;
 
@@ -626,7 +626,7 @@
     }).filter((item) => item.label && item.value);
 
     const sent = await sendMail(
-      `Reserva de vehiculo ${ref} - Auto Elite`,
+      `Reserva de vehiculo ${ref} - Auto Élite`,
       "Quiero enviar esta solicitud de reserva:",
       [{ label: "Referencia", value: ref }, ...rows]
     );
@@ -659,7 +659,7 @@
     const car = DYNAMIC_CARS[carId] || DYNAMIC_CARS.bmw;
     initDetailWizard(car);
 
-    document.title = `${car.name} - Auto Elite`;
+    document.title = `${car.name} - Auto Élite`;
     const bcName = document.getElementById("bc-name");
     if (bcName) bcName.textContent = car.name;
 
@@ -897,7 +897,7 @@
     const title = form.querySelector("h3")?.textContent?.trim() || "Solicitud";
     const fields = collectFields(form);
     const sent = await sendMail(
-      `${title} - Auto Elite`,
+      `${title} - Auto Élite`,
       `Quiero realizar esta solicitud: ${title}`,
       fields
     );
@@ -924,7 +924,7 @@
 
     const subject = `Solicitud prueba de manejo - ${vehiculo}`;
     const bodyText = [
-      "Hola Auto Elite,",
+      "Hola Auto Élite,",
       "",
       "Quiero agendar una prueba de manejo con estos datos:",
       `Nombre: ${nombre} ${apellido}`,
@@ -986,7 +986,7 @@
     if (event?.preventDefault) event.preventDefault();
     const fields = collectFields(form);
     const sent = await sendMail(
-      "Agendar cita de servicio - Auto Elite",
+      "Agendar cita de servicio - Auto Élite",
       "Quiero agendar una cita de servicio con estos datos:",
       fields
     );
@@ -1002,7 +1002,7 @@
     if (!formBody || !formSuccess) return;
     const fields = collectFields(formBody);
     const sent = await sendMail(
-      "Solicitud de financiamiento - Auto Elite",
+      "Solicitud de financiamiento - Auto Élite",
       "Quiero solicitar financiamiento con los siguientes datos:",
       fields
     );

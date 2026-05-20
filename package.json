@@ -2,7 +2,7 @@
   "name": "autoelite",
   "version": "1.0.0",
   "private": true,
-  "description": "Sitio Auto Elite con backend Node.js",
+  "description": "Sitio Auto Élite con backend Node.js",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

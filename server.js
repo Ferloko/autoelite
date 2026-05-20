@@ -1,4 +1,4 @@
-const path = require("path");
+﻿const path = require("path");
 const express = require("express");
 require("dotenv").config();
 
@@ -29,5 +29,5 @@ app.get("/", (_req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Auto Elite server running on http://localhost:${PORT}`);
+  console.log(`Auto Élite server running on http://localhost:${PORT}`);
 });

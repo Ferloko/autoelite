@@ -1,4 +1,4 @@
-function extractErrorMessage(data, fallback) {
+﻿function extractErrorMessage(data, fallback) {
   if (!data) return fallback;
   if (typeof data === "string") return data;
   if (data.message) return data.message;
@@ -32,7 +32,7 @@ function sanitizeFields(fields) {
 
 function buildEmailText(intro, fields) {
   return [
-    "Hola Auto Elite,",
+    "Hola Auto Élite,",
     "",
     intro,
     "",
@@ -61,7 +61,7 @@ function buildEmailHtml(intro, fields) {
             <table role="presentation" width="640" style="border-collapse:collapse;max-width:640px;width:100%;background:#ffffff;border:1px solid #232327;border-radius:14px;overflow:hidden;">
               <tr>
                 <td style="background:linear-gradient(120deg,#0f0f0f 0%,#19191d 100%);padding:24px 28px 30px;border-bottom:1px solid rgba(255,255,255,.08);">
-                  <p style="margin:0;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#ffffff;">Auto Elite</p>
+                  <p style="margin:0;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#ffffff;">Auto Élite</p>
                   <p style="margin:8px 0 0;font-size:11px;color:#c8a96e;letter-spacing:.08em;text-transform:uppercase;">Concesionario Premium</p>
                   <h2 style="margin:20px 0 0;font-size:26px;line-height:1.2;letter-spacing:-.02em;color:#ffffff;max-width:420px;">Confirmacion de solicitud recibida</h2>
                   <p style="margin:10px 0 0;font-size:13px;color:rgba(255,255,255,.62);max-width:460px;line-height:1.6;">Gracias por elegir una experiencia premium. Estamos preparando una propuesta personalizada para usted.</p>
@@ -75,12 +75,12 @@ function buildEmailHtml(intro, fields) {
                     <p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b6b6b;">Resumen de solicitud</p>
                     ${rows}
                   </div>
-                  <p style="margin:18px 0 0;font-size:14px;color:#3f3f46;">Atentamente,<br /><strong>Equipo Comercial Auto Elite</strong></p>
+                  <p style="margin:18px 0 0;font-size:14px;color:#3f3f46;">Atentamente,<br /><strong>Equipo Comercial Auto Élite</strong></p>
                 </td>
               </tr>
               <tr>
                 <td style="border-top:1px solid #ececf1;padding:16px 28px 22px;background:#fafafc;">
-                  <p style="margin:0;font-size:11px;line-height:1.6;color:#7a7a83;">Auto Elite | +1 (809) 000-0000 | info@autoelite.com<br />Av. Principal 100, Santo Domingo</p>
+                  <p style="margin:0;font-size:11px;line-height:1.6;color:#7a7a83;">Auto Élite | +1 (809) 000-0000 | info@autoelite.com<br />Av. Principal 100, Santo Domingo</p>
                 </td>
               </tr>
             </table>
@@ -173,7 +173,7 @@ module.exports = async function handler(req, res) {
     const resendFrom = process.env.RESEND_FROM;
     const brevoApiKey = process.env.BREVO_API_KEY;
     const brevoSenderEmail = process.env.BREVO_SENDER_EMAIL;
-    const brevoSenderName = process.env.BREVO_SENDER_NAME || "Auto Elite";
+    const brevoSenderName = process.env.BREVO_SENDER_NAME || "Auto Élite";
 
     if (resendApiKey && resendFrom) {
       const messageId = await sendWithResend({
