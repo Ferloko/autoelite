@@ -1,4 +1,60 @@
-﻿function extractErrorMessage(data, fallback) {
+﻿const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 12;
+const MAX_SUBJECT_LEN = 200;
+const MAX_INTRO_LEN = 1000;
+const MAX_FIELDS = 40;
+const MAX_LABEL_LEN = 80;
+const MAX_VALUE_LEN = 2000;
+
+const rateLimitStore = new Map();
+
+function getClientIp(req) {
+  const forwarded = req.headers["x-forwarded-for"];
+  if (forwarded) return String(forwarded).split(",")[0].trim();
+  return req.socket?.remoteAddress || "unknown";
+}
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = rateLimitStore.get(ip) || { count: 0, reset: now + RATE_LIMIT_WINDOW_MS };
+  if (now > entry.reset) {
+    entry.count = 0;
+    entry.reset = now + RATE_LIMIT_WINDOW_MS;
+  }
+  entry.count += 1;
+  rateLimitStore.set(ip, entry);
+  return entry.count > RATE_LIMIT_MAX;
+}
+
+function isLocalDevRequest(req) {
+  const origin = String(req.headers.origin || "");
+  const referer = String(req.headers.referer || "");
+  const localOrigin = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/?$/i;
+  const localReferer = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i;
+  return localOrigin.test(origin) || localReferer.test(referer);
+}
+
+function isOriginAllowed(req) {
+  if (isLocalDevRequest(req)) return true;
+  const allowed = process.env.ALLOWED_ORIGINS;
+  if (!allowed) return true;
+  const bases = allowed.split(",").map((item) => item.trim()).filter(Boolean);
+  if (!bases.length) return true;
+  const origin = String(req.headers.origin || "");
+  const referer = String(req.headers.referer || "");
+  return bases.some((base) => origin.startsWith(base) || referer.startsWith(base));
+}
+
+function isTruthyEnv(name) {
+  return String(process.env[name] || "").trim().toLowerCase() === "true";
+}
+
+function publicError(res, status, message, detail) {
+  if (detail) console.error(detail);
+  return res.status(status).json({ ok: false, error: message });
+}
+
+function extractErrorMessage(data, fallback) {
   if (!data) return fallback;
   if (typeof data === "string") return data;
   if (data.message) return data.message;
@@ -23,9 +79,10 @@ function escapeHtml(value) {
 function sanitizeFields(fields) {
   if (!Array.isArray(fields)) return [];
   return fields
+    .slice(0, MAX_FIELDS)
     .map((item) => ({
-      label: normalizeText(item?.label),
-      value: normalizeText(item?.value),
+      label: normalizeText(item?.label).slice(0, MAX_LABEL_LEN),
+      value: normalizeText(item?.value).slice(0, MAX_VALUE_LEN),
     }))
     .filter((item) => item.label && item.value);
 }
@@ -146,26 +203,37 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ ok: false, error: "Method not allowed" });
   }
 
+  if (!isOriginAllowed(req)) {
+    return publicError(res, 403, "Solicitud no permitida.");
+  }
+
+  const clientIp = getClientIp(req);
+  if (isRateLimited(clientIp)) {
+    return publicError(res, 429, "Demasiadas solicitudes. Intenta de nuevo en un minuto.");
+  }
+
   try {
     const payload = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
     const toEmail = process.env.CONTACT_EMAIL;
-    const subject = normalizeText(payload.subject);
-    const intro = normalizeText(payload.intro);
+    const subject = normalizeText(payload.subject).slice(0, MAX_SUBJECT_LEN);
+    const intro = normalizeText(payload.intro).slice(0, MAX_INTRO_LEN);
     const fields = sanitizeFields(payload.fields);
     const text = buildEmailText(intro, fields);
     const html = buildEmailHtml(intro, fields);
 
     if (!toEmail) {
-      return res.status(500).json({
-        ok: false,
-        error: "Missing CONTACT_EMAIL in server configuration.",
-      });
+      return publicError(
+        res,
+        500,
+        "El envío de correo no está disponible en este momento.",
+        "Missing CONTACT_EMAIL in server configuration."
+      );
     }
 
     if (!subject || !intro || !fields.length) {
       return res.status(400).json({
         ok: false,
-        error: "Missing subject, intro or fields in request body.",
+        error: "Faltan datos obligatorios en la solicitud.",
       });
     }
 
@@ -188,10 +256,12 @@ module.exports = async function handler(req, res) {
     }
 
     if (resendApiKey && !resendFrom) {
-      return res.status(500).json({
-        ok: false,
-        error: "RESEND_API_KEY is set but RESEND_FROM is missing.",
-      });
+      return publicError(
+        res,
+        500,
+        "El envío de correo no está disponible en este momento.",
+        "RESEND_API_KEY is set but RESEND_FROM is missing."
+      );
     }
 
     if (brevoApiKey && brevoSenderEmail) {
@@ -207,14 +277,23 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ ok: true, provider: "brevo", messageId });
     }
 
-    return res.status(500).json({
-      ok: false,
-      error: "Missing provider config. Set RESEND_API_KEY+RESEND_FROM or BREVO_API_KEY+BREVO_SENDER_EMAIL.",
-    });
+    if (isTruthyEnv("EMAIL_DEV_LOG")) {
+      console.log("[EMAIL_DEV_LOG] Simulando envío (no se envió correo real):");
+      console.log({ to: toEmail, subject, text });
+      return res.status(200).json({ ok: true, provider: "dev-log" });
+    }
+
+    return publicError(
+      res,
+      500,
+      "El envío de correo no está disponible en este momento.",
+      "Missing provider config. Set RESEND_API_KEY+RESEND_FROM or BREVO_API_KEY+BREVO_SENDER_EMAIL."
+    );
   } catch (error) {
+    console.error(error);
     return res.status(400).json({
       ok: false,
-      error: error.message || "Unexpected error while sending email",
+      error: "No se pudo procesar la solicitud. Revisa los datos e intenta de nuevo.",
     });
   }
 };

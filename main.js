@@ -923,20 +923,6 @@
     }
 
     const subject = `Solicitud prueba de manejo - ${vehiculo}`;
-    const bodyText = [
-      "Hola Auto Élite,",
-      "",
-      "Quiero agendar una prueba de manejo con estos datos:",
-      `Nombre: ${nombre} ${apellido}`,
-      `Telefono: ${telefono}`,
-      `Correo: ${correo}`,
-      `Vehiculo de interes: ${vehiculo}`,
-      `Fecha preferida: ${fecha}`,
-      `Hora preferida: ${hora}`,
-      `Mensaje adicional: ${mensaje || "N/A"}`,
-      "",
-      "Gracias.",
-    ].join("\n");
 
     const sent = await sendMail(
       subject,
