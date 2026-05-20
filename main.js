@@ -21,7 +21,23 @@
     document.head.appendChild(script);
   }
 
+  function initVercelSpeedInsights() {
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") return;
+    if (document.querySelector('script[data-vercel-speed-insights="true"]')) return;
+
+    window.si = window.si || function () {
+      (window.siq = window.siq || []).push(arguments);
+    };
+
+    const script = document.createElement("script");
+    script.defer = true;
+    script.src = "/_vercel/speed-insights/script.js";
+    script.setAttribute("data-vercel-speed-insights", "true");
+    document.head.appendChild(script);
+  }
+
   initVercelAnalytics();
+  initVercelSpeedInsights();
 
   if (hero && nav) {
     new IntersectionObserver(([entry]) => {
